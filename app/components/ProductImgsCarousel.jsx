@@ -52,18 +52,6 @@ const ProductImgsCarousel = ({ productImages, thumbnails }) => {
           </button>
         ))}
       </div>
-
-      {/* Zoomed Image Modal */}
-      {isImgZoomed && (
-        <div className="w-screen h-screen absolute inset-0 bg-black opacity-30 flex items-center justify-center">
-          <img
-            src={productImages[activeImg]}
-            alt="Product"
-            className="max-w-full max-h-full"
-            onClick={zoomImage} // To close the zoom on click
-          />
-        </div>
-      )}
     </div>
   );
 };

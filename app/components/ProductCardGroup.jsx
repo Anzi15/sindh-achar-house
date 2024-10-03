@@ -7,7 +7,6 @@ const ProductCardGroup = ({
   loading,
   link = null,
 }) => {
-  // Handle the case where products might be empty or null
   const productArray =
     products && products.length > 0
       ? products

@@ -15,7 +15,7 @@ const WhatsAppLeadForm = () => {
     setLoading(true);
     
     try {
-      const response = await fetch("/api/lead", {
+      const response = await fetch("/api/captureLead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

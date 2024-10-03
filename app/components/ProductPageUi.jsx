@@ -55,7 +55,6 @@ const ProductPageUi = ({product}) => {
   };
 
   const updateQuantity = (qnty = 1, action) => {
-    alert(qnty)
     setQuantity((prevQuantity) => {
       if (action === "increment") {
         return prevQuantity + qnty;
@@ -66,25 +65,25 @@ const ProductPageUi = ({product}) => {
       }
     });
   };
-  setSelectedVariant;
 
-//   useEffect(() => {
-//     const fetchDocument = async () => {
-//       try {
-//         const product = await getDocument("Products", productId);
-//         setproduct(product);
-//         setSelectedVariant(product.variants[0] || null);
-//         console.log(product);
-//         setIsLoading(false);
-//       } catch (error) {
-//         console.error(error);
-//         setError(true);
-//         setIsLoading(false);
-//       }
-//     };
+  useEffect(() => {
+    const fetchDocument = async () => {
+      try {
+        setSelectedVariant(product.variants[0] || null);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setError(true);
+        setIsLoading(false);
+      }
+    };
 
-//     fetchDocument();
-//   }, [productId]);
+    fetchDocument();
+  }, [productId]);
+  
+  useEffect(()=>{
+    console.log(selectedVariant.price)
+  },[selectedVariant])
 
   if (error) {
     return <Navigate href="/" />;
@@ -99,15 +98,21 @@ const ProductPageUi = ({product}) => {
     return isNaN(parsed) ? 0 : parsed;
   };
 
-  useEffect(()=>{
-    if(isLoading) return;
-    console.log(product.comparePrice, selectedVariant.comparePrice)
-    if(parsePrice(selectedVariant?.comparePrice || parsePrice(product?.comparePrice))){
-      if((parsePrice(selectedVariant?.comparePrice) !== 0) || (parsePrice(product.comparePrice) !== 0)){
-          setShouldShowComparePrice(true)
-      }
+  useEffect(() => {
+    if (isLoading) return;
+  
+    // Parse the compare price for the selected variant or fall back to product compare price
+    const comparePrice = parsePrice(selectedVariant?.comparePrice || product?.comparePrice);
+    const currentPrice = parsePrice(selectedVariant?.price || product?.price); // Actual price
+  
+    // Ensure comparePrice is non-zero and less than the actual price
+    if (comparePrice && comparePrice > 0 && comparePrice > currentPrice) {
+      setShouldShowComparePrice(true);
+    } else {
+      setShouldShowComparePrice(false); // Reset if conditions aren't met
     }
-  },[product.comparePrice, selectedVariant.comparePrice])
+  }, [product.comparePrice, selectedVariant?.comparePrice, selectedVariant?.price, product?.price, isLoading]);
+  
 
   return (
     <div className="details-section flex flex-col pt-6 text-left gap-3 w-full md:w-1/2 px-6">
@@ -135,17 +140,17 @@ const ProductPageUi = ({product}) => {
             id="product-price-elem"
           >
             Rs.
-           {product.price}
+           {selectedVariant.price * quantity}
           </h3>
         </div>
 
-        {shouldShowComparePrice && (
+        {shouldShowComparePrice &&  (
           <div>
             <div>
               Rs.
               <s className="line-through">
                 {
-                  product.comparePrice }
+                  selectedVariant.comparePrice }
               </s>
             </div>
           </div>
@@ -290,14 +295,14 @@ const ProductPageUi = ({product}) => {
           <IoMdCart className="text-xl" />
           <p className="hidden md:flex">Add To Cart</p>
         </Button>
-        <Link href={`/checkout/${productId}/${quantity}/none/${product?.variants?.indexOf(selectedVariant)}`} className="w-full">
+        <Link href={`/checkout/${product.id}/${quantity}/none/${product?.variants?.indexOf(selectedVariant)}`} className="w-full">
           <Button className="w-full py-3.5 text-lg">Buy now</Button>
         </Link>
 
         
           <div className="md:hidden w-full px-2 py-2  text-white fixed bottom-0 left-0 right-0 z-50 m-auto">
             <button
-              className="bg-[#FE0000] w-full py-5 rounded-2xl flex px-4 items-center gap-2 justify-between"
+              className="bg-[#FE0000] w-full max-w-[95vw] py-5 rounded-2xl flex px-4 items-center gap-2 justify-between"
               onClick={addToCart}
             >
               <div className="flex items-center gap-3">
