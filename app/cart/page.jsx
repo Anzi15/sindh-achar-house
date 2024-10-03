@@ -6,10 +6,7 @@ import CartItem from "../components/CartItem.jsx";
 import PromoCodeForm from "../components/PromoCodeForm.jsx";
 import Image from "next/image";
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(() => {
-    // Get initial cart items from localStorage
-    return JSON.parse(localStorage.getItem('cart-items')) || [];
-  });
+  const [cartItems, setCartItems] = useState(null)
   const [subTotal, setSubTotal] = useState(null)
   const [total, setTotal] = useState(null)
   const [productsLoading, setProductsLoading] = useState(true);
@@ -23,6 +20,9 @@ const CartPage = () => {
   // const [ finalShippingFees, setFinalShippingFees] = useState(null)
   const [couponCodeApplied, setCouponCodeApplied] = useState(null)
 
+  useEffect(()=>{
+    setCartItems(JSON.parse(localStorage.getItem('cart-items')) || [])
+  },[])
 
   useEffect(()=>{
     console.log(couponCodeApplied)

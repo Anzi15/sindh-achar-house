@@ -31,18 +31,18 @@ export default async function ProductsPage({params}) {
     <main className="flex justify-evenly w-full md:flex-row flex-col relative h-full">
         <ProductImgsCarousel
           className=" md:max-h-[565px] md:max-w-[445px] md:gap-8"
-          productImages={[
+          parsedProductImages={JSON.stringify([
             productData.primaryImg,
             productData.secondary1Img,
             productData.secondary2Img,
-          ]}
-          thumbnails={[
+          ])}
+          parsedThumbnails={JSON.stringify([
             productData.primaryImgThumbnails[0].url,
             productData.secondary1ImgThumbnails[0].url,
             productData.secondary2ImgThumbnails[0].url,
-          ]}
+          ])}
         />
-          <ProductPageUi product={productData}/>
+          <ProductPageUi parsedProduct={JSON.stringify(productData)}/>
 
           
       </main>

@@ -18,7 +18,8 @@ import { Button } from "@material-tailwind/react";
 import { IoMdCart } from "react-icons/io";
 
 
-const ProductPageUi = ({product}) => {
+const ProductPageUi = ({parsedProduct}) => {
+  const product = JSON.parse(parsedProduct)
     const [selectedVariant, setSelectedVariant] = useState({price: 20, comparePrice: 30, name:"meow"});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);

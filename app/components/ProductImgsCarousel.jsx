@@ -3,7 +3,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const ProductImgsCarousel = ({ productImages, thumbnails }) => {
+const ProductImgsCarousel = ({ parsedProductImages, parsedThumbnails }) => {
+  const productImages = JSON.parse(parsedProductImages)
+  const thumbnails = JSON.parse(parsedThumbnails)
   const [activeImg, setActiveImg] = useState(0);
   const [isImgZoomed, setIsImgZoomed] = useState(false);
 
