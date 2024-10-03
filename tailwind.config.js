@@ -7,9 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      colors:{
+        brandBrown: "#5E2C05",
+        brandRed: "#BC3434"
+      },
+      backgroudImage:{
+        'low-resolution-hero-cover':"url(/src/assets/website cover blur 100.png)"
+      },
+      fontFamily: {
+        futura: ['Futura'],
       },
     },
   },
