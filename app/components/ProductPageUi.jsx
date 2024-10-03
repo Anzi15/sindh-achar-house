@@ -187,7 +187,7 @@ const ProductPageUi = ({parsedProduct}) => {
                           name="variant-radio"
                           id={`variant-radio-${index}`}
                           type="radio"
-                          checked={selectedVariant === variant} // This ensures the correct radio button is checked
+                          checked={selectedVariant.name === variant.name} // This ensures the correct radio button is checked
                           readOnly
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
                         />
@@ -226,7 +226,7 @@ const ProductPageUi = ({parsedProduct}) => {
           type="button"
           id="decrement-button"
           product-input-counter-decrement="quantity-input"
-          className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+          className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
           onClick={() => {
             updateQuantity(1, "decrement");
           }}
@@ -248,17 +248,21 @@ const ProductPageUi = ({parsedProduct}) => {
           </svg>
         </button>
         <input
-          type="number"
-          id="quantity-input"
-          product-input-counter
-          aria-describedby="helper-text-explanation"
-          className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={quantity}
-          required
-          onInput={(e) => {
-            updateQuantity(e.target.value);
-          }}
-        />
+      type="number"
+      id="quantity-input"
+      product-input-counter
+      aria-describedby="helper-text-explanation"
+      className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
+      value={quantity}
+      required
+      onInput={(e) => {
+        updateQuantity(e.target.value);
+      }}
+      style={{
+        appearance: 'none', // For modern browsers
+        MozAppearance: 'textfield', // For Firefox
+      }}
+    />
         <button
           onClick={() => {
             updateQuantity(1, "increment");
@@ -266,7 +270,7 @@ const ProductPageUi = ({parsedProduct}) => {
           type="button"
           id="increment-button"
           product-input-counter-increment="quantity-input"
-          className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+          className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none"
         >
           <svg
             className="w-3 h-3 text-gray-900 dark:text-white"

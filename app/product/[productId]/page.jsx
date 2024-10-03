@@ -8,6 +8,7 @@ import HtmlRenderer from "@/app/components/HtmlRenderer";
 import Image from "next/image";
 import CustomerBenefits from "@/app/components/CustomerBenefits";
 import TestimonialSlider from "@/app/components/testimonials-slider";
+import ProductSuggestions from "@/app/components/ProductSuggestions";
 
 export async function generateMetadata({params}) {
   const productDoc = await getDoc(doc(db, "Products", params.productId));
@@ -140,10 +141,10 @@ export default async function ProductsPage({params}) {
 
       <TestimonialSlider bgColor="blue-500" textColor="black" />
 
-        {/* <ProductSuggestions
+        <ProductSuggestions
           heading="You might also like:"
-          dontUse={product.title}
-        /> */}
+          dontUse={productData.title}
+        />
     </>
   );
 }

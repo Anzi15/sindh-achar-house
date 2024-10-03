@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import "../app/globals.css"
+import "../app/app.css"
 import HeaderMsg from './components/HeaderMsg';
 import Footer from './components/Footer';
 import ToastProvider from './components/ToastProviderProps';

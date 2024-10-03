@@ -64,7 +64,7 @@ export default function TestimonialSlider({ testimonials=[
 ] }) {
   return (
     <>
-      <section className="w-full py-4">
+      <section className="w-full max-w-[98vw] py-4 cursor-grab ">
         <div className="mx-auto lg:max-w-6xl px-3">
           <Carousel
             opts={{
@@ -108,8 +108,7 @@ export default function TestimonialSlider({ testimonials=[
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 fill-black" />
-            <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 fill-black" />
+            
           </Carousel>
         </div>
       </section>
