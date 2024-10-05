@@ -16,6 +16,7 @@ import Link from "next/link";
 import CountdownTimer, { formatRemainingTime } from "../components/CountDownTimer";
 import { Button } from "@material-tailwind/react";
 import { IoMdCart } from "react-icons/io";
+import { toast } from "react-toastify";
 
 
 const ProductPageUi = ({parsedProduct}) => {
@@ -82,9 +83,6 @@ const ProductPageUi = ({parsedProduct}) => {
     fetchDocument();
   }, [productId]);
   
-  useEffect(()=>{
-    console.log(selectedVariant.price)
-  },[selectedVariant])
 
   if (error) {
     return <Navigate href="/" />;

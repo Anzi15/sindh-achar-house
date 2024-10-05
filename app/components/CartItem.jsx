@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import TailwindDialog from './TailwindDialog.jsx';
+import Image from 'next/image';
 
 const CartItem = ({product, productsLoading, quantity, cartItemsUpdater}) => {
   const [quantityState, setQuantityState] = useState(quantity);
@@ -10,7 +11,7 @@ const CartItem = ({product, productsLoading, quantity, cartItemsUpdater}) => {
   
     const products = JSON.parse(localStorage.getItem("cart-items"))
   useEffect(()=>{
-    updateProductQuantity(product.id, quantityState);
+    updateProductQuantity(product.data.id, quantityState);
   },[quantityState]);
 
 
@@ -47,10 +48,9 @@ const CartItem = ({product, productsLoading, quantity, cartItemsUpdater}) => {
   };
 
   function updateProductQuantity(productId, newQuantity) {
-    console.log(productId)
-    const product = products.find(p => p.productId === productId);
+
+    const product = products.find(p => p.product.id === productId);
     if (product) {
-       // Update the quantity
     product.quantity = newQuantity;
 
     localStorage.setItem("cart-items", JSON.stringify(products));
@@ -63,8 +63,10 @@ const CartItem = ({product, productsLoading, quantity, cartItemsUpdater}) => {
     <div className="flex min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group" >
       {confirmationDialog}
     <div className="w-[40%] md:max-w-[126px]">
-      <img
-        src={productsLoading ? "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/640px-HD_transparent_picture.png?alt=media&token=6b3789c8-da36-47ad-b36a-b2dfe62eb984" : product.primaryImg}
+      <Image
+        src={productsLoading ? "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/640px-HD_transparent_picture.png?alt=media&token=6b3789c8-da36-47ad-b36a-b2dfe62eb984" : product.data.primaryImg}
+        width={280}
+        height={280}
         alt="perfume bottle image"
         className={`mx-auto skeleton-loading rounded-xl ${productsLoading && "skeleton-loading"}`}
       />

@@ -22,6 +22,7 @@ const CartPage = () => {
 
   useEffect(()=>{
     setCartItems(JSON.parse(localStorage.getItem('cart-items')) || [])
+    setProductsLoading(false)
   },[])
 
   useEffect(()=>{
@@ -30,15 +31,16 @@ const CartPage = () => {
 
   useEffect(() => {
     if (cartItems?.length) {
+      console.log(cartItems[0])
       const getCartProducts = async (allProducts) => {
         const productsArr = [];
         allProducts.map((product) => {
           const quantity = product.quantity;
           const selectedVariant = product.selectedVariant;
-          const id = product.productId;
+          const id = product?.product?.id;
           console.log(quantity);
           const allData = {
-            ...product.data,
+            data: product.product,
             quantity,
             selectedVariant,
             id,
@@ -56,12 +58,14 @@ const CartPage = () => {
       };
 
       getCartProducts(cartItems).then(async (products) => {
+        console.log(products)
         let subtotal = 0;
         const allProductsTags = [];
         
         products.forEach((product) => {
             subtotal += product.selectedVariant.price * product.quantity;
-            allProductsTags.push(...product.tags);
+            const prevTags = allProductTags
+            product.data.tags.forEach((tag)=>allProductTags.push(tag))
         });
         
        
@@ -107,7 +111,9 @@ const CartPage = () => {
 
   return (
     <main className="overflow-x-hidden py-8">
-      {cartItems?.length ? (
+      {productsLoading ? (
+        <div className="min-h-screen"></div>
+      ) : cartItems?.length ? (
         <section className=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
           <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
             <div className="grid grid-cols-12 md:order--1 order-1">
