@@ -161,7 +161,7 @@ const CartPage = () => {
                     );
                   })}
 
-                  {/* <div className="flex flex-col md:hidden">
+                  <div className="flex flex-col md:hidden">
                   <div className="py-8 flex flex-col gap-4">
                     <div>
                     <div className="flex items-center justify-between ">
@@ -203,10 +203,10 @@ const CartPage = () => {
 
                    </div>
 
-                    <Link className="w-full text-center bg-red-800 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-red-900"   href={`/cart/checkout/`}>
+                    <Link className="w-full text-center bg-red-800 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-red-900"   href={checkoutLink}>
                       Checkout
                     </Link>
-                  </div> */}
+                  </div>
               </div>
 
               <div className={`col-span-12 xl:col-span-4 md:bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 md:py-24  md:order-2 order ${isSummaryExpanded  && "bg-gray-50"}`}>

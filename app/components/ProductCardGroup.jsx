@@ -95,7 +95,7 @@ const ProductCardGroup = ({
         
 
   return (
-    <div className="my-12 mt-16 px-8 ">
+    <div className="my-12 px-8 ">
       {/* Conditional rendering for group heading */}
       <div className="w-full flex justify-between">
         {groupHeading && (

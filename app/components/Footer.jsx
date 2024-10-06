@@ -103,7 +103,7 @@ const Footer = () => {
           <FaInstagramSquare  className="text-4xl transition-all hover:scale-105" />
           </Link>
         
-          <Link href={"https://www.tiktok.com/@alzehrabygm"} target="_blank">
+          <Link href={"https://www.tiktok.com/@al.zehra"} target="_blank">
           <AiFillTikTok  className="text text-[2.6rem] transition-all hover:scale-105" />
           </Link>
         </div>
