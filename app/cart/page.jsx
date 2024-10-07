@@ -16,7 +16,7 @@ const CartPage = () => {
   const [discountValue, setDiscountValue] = useState(0)
   const [discountType, setDiscountType] = useState(null)
   const [shippingFees, setShippingFees] = useState(null)
-  const [checkoutLink, setCheckoutLink] = useState(`/checkout/cart/0/`)
+  const [checkoutLink, setCheckoutLink] = useState(`/checkout?source=cart`)
   // const [ finalShippingFees, setFinalShippingFees] = useState(null)
   const [couponCodeApplied, setCouponCodeApplied] = useState(null)
 
@@ -88,6 +88,17 @@ const CartPage = () => {
       setProductsLoading(false);
     } //empty
   }, [cartItems]);
+
+  useEffect(() => {
+    let checkoutUrl = `/checkout?source=cart`;
+  
+    if (couponCodeApplied) {
+      checkoutUrl += `&coupon=${couponCodeApplied}`;
+    }
+  
+    setCheckoutLink(checkoutUrl);
+  }, [discountValue, couponCodeApplied]);
+  
 
   useEffect(()=>{
     setTotal(subTotal + shippingFees - discountValue)
@@ -307,7 +318,7 @@ const CartPage = () => {
                    </div>
                    <div className="w-full">
 
-                    <Link href={`/checkout/cart/0/${couponCodeApplied !== null ? couponCodeApplied : ""}`} className=" text-center bg-red-800 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-red-900 mb-8 block">
+                    <Link href={`${checkoutLink}`} className=" text-center bg-red-800 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-red-900 mb-8 block">
                       Checkout
                     </Link>
 

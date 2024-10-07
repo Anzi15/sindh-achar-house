@@ -31,6 +31,7 @@ const ProductPageUi = ({parsedProduct}) => {
   const [quantity, setQuantity] = useState(1);
     const productId = product.productId
 
+    
   const addToCart = () => {
     const productId = product.productId
     const prevCartItems = JSON.parse(localStorage.getItem("cart-items")) || [];
@@ -298,9 +299,16 @@ const ProductPageUi = ({parsedProduct}) => {
           <IoMdCart className="text-xl" />
           <p className="hidden md:flex">Add To Cart</p>
         </Button>
-        <Link href={`/checkout/${product.id}/${quantity}/none/${product?.variants?.indexOf(selectedVariant)}`} className="w-full">
-          <Button className="w-full py-3.5 text-lg">Buy now</Button>
-        </Link>
+        <Link
+  href={`/checkout?source=${product.id}&quantity=${quantity}&selectedVariantIndex=${product?.variants.findIndex(variant => 
+    variant.name === selectedVariant.name && 
+    variant.price === selectedVariant.price
+  )}`}
+  className="w-full"
+>
+  <Button className="w-full py-3.5 text-lg">Buy now</Button>
+</Link>
+
 
         
           <div className="md:hidden w-full px-2 py-2  text-white fixed bottom-0 left-0 right-0 z-50 m-auto">
