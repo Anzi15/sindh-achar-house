@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +6,7 @@ import InputField from "../components/InputField";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import PromoCodeForm from "../components/PromoCodeForm";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { Timestamp } from 'firebase/firestore'; 
+import { Timestamp } from "firebase/firestore";
 
 import {
   setDoc,
@@ -16,14 +16,13 @@ import {
   query,
   where,
   getDocs,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../lib/firebase/firbaseConfig";
 import { Button } from "@material-tailwind/react";
 import { toast } from "react-toastify";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-
 
 const paymentMethods = [
   {
@@ -49,19 +48,18 @@ const paymentMethods = [
   {
     icon: "/bank.webp",
     name: "Bank Transfer",
-    context: "Send your payment to this IBAN number:  <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using bank transfer for a order on your website' target='_blank'>PK05 BAHL 1252 0981 0005 9601</a>",
+    context:
+      "Send your payment to this IBAN number:  <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using bank transfer for a order on your website' target='_blank'>PK05 BAHL 1252 0981 0005 9601</a>",
     identifier: "BT",
   },
 ];
 
 const CheckoutPage = () => {
-
-    const searchParams = useSearchParams();
-  
-    const source = searchParams.get('source');
-    const quantity = searchParams.get('quantity');
-    const coupon = searchParams.get('coupon');
-    const selectedVariantIndex = searchParams.get('selectedVariantIndex');
+  const searchParams = useSearchParams();
+  const source = searchParams.get("source");
+  const quantity = searchParams.get("quantity");
+  const coupon = searchParams.get("coupon");
+  const selectedVariantIndex = searchParams.get("selectedVariantIndex");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -84,9 +82,7 @@ const CheckoutPage = () => {
   const [shippingFees, setShippingFees] = useState(null);
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
 
-  const [couponCodeApplied, setCouponCodeApplied] = useState(
-    null
-  );
+  const [couponCodeApplied, setCouponCodeApplied] = useState(null);
   const [cartItems, setCartItems] = useState(() => {
     // Get initial cart items from localStorage
     return JSON.parse(localStorage.getItem("cart-items")) || [];
@@ -124,7 +120,6 @@ const CheckoutPage = () => {
   useEffect(() => {
     setProductsLoading(true);
     const getProducts = async () => {
-      alert(source)
       if (source == "cart") {
         if (cartItems?.length) {
           let subtotal = 0;
@@ -180,12 +175,21 @@ const CheckoutPage = () => {
     setTotal(subTotal + shippingFees - discountValue);
   }, [products, subTotal, shippingFees, discountValue]);
 
+  function generateOrderId(length = 8) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let orderId = '';
+    for (let i = 0; i < length; i++) {
+        orderId += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return orderId;
+}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmissionLoading(true);
     let success = false;
     const orderData = {
-      orderId: uuidv4(),
+      orderId: generateOrderId(),
       customer: {
         firstName,
         lastName,
@@ -215,7 +219,7 @@ const CheckoutPage = () => {
       ],
       shippingFees,
       grandTotal: total,
-      ConfirmationEmailSent: false
+      ConfirmationEmailSent: false,
     };
 
     try {
@@ -225,39 +229,40 @@ const CheckoutPage = () => {
           collection(db, "coupons"),
           where("couponCode", "==", couponCodeApplied)
         );
-    
+
         const querySnapshot = await getDocs(q);
-        
+
         if (!querySnapshot.empty) {
           // Assuming there's only one document with this couponCode
           const docRef = doc(db, "coupons", querySnapshot.docs[0].id);
           const docSnap = querySnapshot.docs[0];
-        
+
           const docSnapData = docSnap.data();
           console.warn(docSnapData);
-        
+
           // Increment the usedCount field
           const updatedUsedCount = (docSnapData.usedCount || 0) + 1;
-          
+
           console.log({ ...docSnapData, usedCount: updatedUsedCount });
-          
+
           // Update the document with the new usedCount
           await updateDoc(docRef, {
-            usedCount: updatedUsedCount
+            usedCount: updatedUsedCount,
           });
         } else {
           console.warn("No document found with the specified couponCode");
         }
       }
-      if(source == "cart") localStorage.removeItem("cart-items");
-      toast.success("Your order has been placed")
-      navigate(`/order/confirmed/${orderData.orderId}/${orderData.payment.method}/${orderData.customer.firstName}/${orderData.customer.email}`)
+      if (source == "cart") localStorage.removeItem("cart-items");
+      toast.success("Your order has been placed");
+      navigate(
+        `/order/confirmed/${orderData.orderId}`
+      );
     } catch (error) {
-      console.log("there a error")
+      console.log("there a error");
       console.log(error);
-      success= false
+      success = false;
     } finally {
-      
     }
   };
 
@@ -550,7 +555,11 @@ const CheckoutPage = () => {
                     </div>} */}
               </div>
             </div>
-            <div className={`py-8 md:block w-full ${isSummaryExpanded ? "flex " : "hidden"}`}>
+            <div
+              className={`py-8 md:block w-full ${
+                isSummaryExpanded ? "flex " : "hidden"
+              }`}
+            >
               <PromoCodeForm
                 productTags={allProductTags}
                 discountValueReturner={getDiscountValue}
