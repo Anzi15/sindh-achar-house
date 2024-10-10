@@ -256,7 +256,7 @@ const CheckoutPage = () => {
       if (source == "cart") localStorage.removeItem("cart-items");
       toast.success("Your order has been placed");
       navigate(
-        `/order/confirmed/${orderData.orderId}`
+        `/order/confirmed/${orderData.orderId}?paymentMethod=${orderData.payment.method}&name=${orderData.customer.firstName}&email=${orderData.customer.email}`
       );
     } catch (error) {
       console.log("there a error");
