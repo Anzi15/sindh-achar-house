@@ -70,7 +70,7 @@ export default async function ProductsPage({ searchParams }) {
           <div>
             <MenuButton className="inline-flex items-center gap-2 w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
               <IoIosOptions className="2xl" />
-              Options
+              Filter & Sort
             </MenuButton>
           </div>
           <MenuItems
@@ -87,6 +87,7 @@ export default async function ProductsPage({ searchParams }) {
                   Sort by Price
                 </Link>
               </MenuItem>
+              Filter
               {/* Use the ProductFilters component here */}
               <ProductFilters selectedFilters={selectedFilters} searchParams={searchParams} />
             </div>

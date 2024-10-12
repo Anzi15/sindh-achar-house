@@ -19,18 +19,19 @@ export default function ProductFilters({ selectedFilters, searchParams }) {
 
   // Define new filter options
   const filterOptions = [
-    { label: "Men", value: "Men" },
-    { label: "Women", value: "Women" },
-    { label: "Light", value: "Light" },
-    { label: "Hard", value: "Hard" },
-    { label: "School", value: "School" },
-    { label: "Office", value: "Office" },
+    { label: "Men", value: "men" },
+    { label: "Women", value: "women" },
+    { label: "Light", value: "light" },
+    { label: "Hard", value: "hard" },
+    { label: "School", value: "school" },
+    { label: "Office", value: "office" },
   ];
 
   return (
     <div className="px-4 py-2">
       {filterOptions.map((option) => (
         <div className="flex items-center mb-2" key={option.value}>
+          <Link href={handleFilterChange(option.value)}>
           <input
             type="checkbox"
             value={option.value}
@@ -39,10 +40,9 @@ export default function ProductFilters({ selectedFilters, searchParams }) {
             readOnly // Make it read-only to prevent error
           />
           <label className="ml-2 text-sm text-gray-700 cursor-pointer">
-            <Link href={handleFilterChange(option.value)}>
-              {option.label}
-            </Link>
+              {option.label}  
           </label>
+            </Link>
         </div>
       ))}
     </div>

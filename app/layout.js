@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const hideHeaderFooter = pathname === '/checkout'; // Hide on /checkout
+  const hideHeaderFooter = pathname === '/checkout' || pathname.startsWith('/admin'); // Hide on /checkout
 
   return (
     <html lang="en">
