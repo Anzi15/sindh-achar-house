@@ -58,7 +58,7 @@ export default async function ProductsPage({params}) {
       <div className="bg-black w-full  overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
         <Image
           className="opacity-50 w-full object-cover h-full absolute inset-0 z-[1]"
-          src={"https://alzehrabygm.store/assets/jessica-weiller-So4eFi-d1nc-unsplash-CyDVDiZn.webp"}
+          src={"/jessica-weiller-So4eFi-d1nc-unsplash.webp"}
           alt="Perfume bottle"
           width={2144}
           height={1072}
@@ -86,7 +86,7 @@ export default async function ProductsPage({params}) {
         </div>
         <div className="md:w-1/2 w-screen flex justify-center items-center">
           <Image
-            src={"https://alzehrabygm.store/assets/olena-bohovyk-KPkR3e6BZG0-unsplash-CbxXOYOt.webp"}
+            src={"/olena-bohovyk-KPkR3e6BZG0-unsplash.webp"}
             className="md:w-[80%] w-[90%] rounded-lg"
             alt="Perfume pakistan"
             width={640}
@@ -99,7 +99,7 @@ export default async function ProductsPage({params}) {
 
       <div className="flex w-[98%] justify-center py-9 flex-wrap md:px-4">
         <Image
-          src={"https://alzehrabygm.store/assets/lavender-bottle-DISiSQQi.webp"}
+          src={"/lavender-bottle.webp"}
           className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
           width={1280}
           height={828}
@@ -133,7 +133,7 @@ export default async function ProductsPage({params}) {
         <Image
         width={1280}
         height={828}
-          src={"https://alzehrabygm.store/assets/scent-of-roses-CsCj_EyW.webp"}
+          src={"/scent-of-roses.webp"}
           className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
           alt="rose bottle perfumes "
         />

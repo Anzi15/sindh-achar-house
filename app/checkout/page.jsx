@@ -268,8 +268,8 @@ const CheckoutPage = () => {
 
   return (
     <>
-      <header className="bg-[#F9FAFB] py-8">
-        <h1 className="text-4xl">Quick Checkout</h1>
+      <header className=" py-8 text-center bg-white border-b-4">
+        <h1 className="text-4xl">AL ZEHRA PERFUMES</h1>
       </header>
       <main className="w-full bg-[#F9FAFB] py-10 flex md:flex-row flex-col-reverse">
         <section className="md:w-1/2 px-8 w-full">

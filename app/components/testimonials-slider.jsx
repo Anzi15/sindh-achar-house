@@ -11,57 +11,51 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 
-export default function TestimonialSlider({ testimonials=[
+export default function TestimonialSlider({ testimonials = [
   {
     quote:
-      "Nostrud tempor sunt fugiat. Dolor in sint dolore labore non occaecat adipisicing Lorem labore ullamco enim excepteur. In fugiat Lorem sit velit id veniam esse eiusmod non ea voluptate cupidatat reprehenderit ullamco dolore. Mollit laborum occaecat aliquip.",
-    name: "Rose Roberson",
-    role: "CEO at Company",
+      "I was blown away by the quality of the fragrances from Al Zehra By GM! The scent is long-lasting, and the packaging was so elegant. I'll definitely be ordering again.",
+    name: "Ayesha Khan",
     imgSrc: "https://i.pravatar.cc/120?img=1",
   },
   {
     quote:
-      "Eiusmod dolor aute ut nulla pariatur officia consequat aute amet exercitation. Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.",
-    name: "Chace Rodgers",
-    role: "CEO at Company",
+      "Al Zehra By GM offers an amazing variety of perfumes that last all day. Their customer service was top-notch, helping me find the perfect scent.",
+    name: "Ahmed Ali",
     imgSrc: "https://i.pravatar.cc/120?img=10",
   },
   {
     quote:
-      "Id duis velit enim officia ad nisi incididunt magna ex dolor minim deserunt dolor.",
-    name: "Cornelius Sheppard",
-    role: "CEO at Company",
+      "I've tried many perfumes, but the ones from Al Zehra By GM truly stand out. The scents are unique and sophisticated, perfect for any occasion.",
+    name: "Hassan Sheikh",
     imgSrc: "https://i.pravatar.cc/120?img=9",
   },
   {
     quote:
-      "Consectetur voluptate pariatur dolore laboris. Eiusmod dolor aute ut nulla pariatur officia consequat aute amet exercitation.",
-    name: "Chace Rodgers",
-    role: "CEO at Company",
+      "From the moment I opened the package, I knew this was something special. Al Zehra By GM delivers quality, and their fragrances are simply irresistible.",
+    name: "Fatima Malik",
     imgSrc: "https://i.pravatar.cc/120?img=7",
   },
   {
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur voluptate pariatur dolore laboris. Eiusmod dolor aute ut nulla pariatur officia consequat aute amet exercitation.",
-    name: "Cornelius Sheppard",
-    role: "CEO at Company",
+      "The craftsmanship behind these perfumes is impressive. Al Zehra By GM has become my go-to for luxury scents that last all day.",
+    name: "Sana Javed",
     imgSrc: "https://i.pravatar.cc/120?img=8",
   },
   {
     quote:
-      "Consectetur voluptate pariatur dolore laboris. Eiusmod dolor aute ut nulla pariatur officia consequat aute amet exercitation.",
-    name: "Chace Rodgers",
-    role: "CEO at Company",
+      "Every perfume I’ve bought from Al Zehra By GM has exceeded my expectations. Their attention to detail and high-quality ingredients make a huge difference.",
+    name: "Zain Raza",
     imgSrc: "https://i.pravatar.cc/120?img=2",
   },
   {
     quote:
-      "Id duis velit enim officia ad nisi incididunt magna ex dolor minim deserunt dolor.",
-    name: "Cornelius Sheppard",
-    role: "CEO at Company",
+      "I never leave the house without wearing a fragrance from Al Zehra By GM. These perfumes are a perfect blend of sophistication and longevity.",
+    name: "Sara Ahmed",
     imgSrc: "https://i.pravatar.cc/120?img=3",
   },
-] }) {
+]
+}) {
   return (
     <>
       <section className="w-full max-w-[98vw] py-4 cursor-grab ">
@@ -98,9 +92,6 @@ export default function TestimonialSlider({ testimonials=[
                       <div>
                         <p className="text-sm font-semibold text-gray-900 dark:text-white">
                           {testimonial.name}
-                        </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {testimonial.role}
                         </p>
                       </div>
                     </div>
