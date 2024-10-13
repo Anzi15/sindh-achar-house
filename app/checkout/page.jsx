@@ -54,6 +54,8 @@ const paymentMethods = [
   },
 ];
 
+
+
 const CheckoutPage = () => {
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
@@ -83,10 +85,7 @@ const CheckoutPage = () => {
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
 
   const [couponCodeApplied, setCouponCodeApplied] = useState(null);
-  const [cartItems, setCartItems] = useState(() => {
-    // Get initial cart items from localStorage
-    return JSON.parse(localStorage.getItem("cart-items")) || [];
-  });
+  const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
 
   const navigate = (page) => {
@@ -116,6 +115,10 @@ const CheckoutPage = () => {
     setShippingFees(subtotal > 1500 ? 0 : 300);
     setCalculationsLoading(false);
   }, [products]);
+
+  useEffect(()=>{
+    setCartItems(JSON.parse(localStorage.getItem("cart-items")))
+  },[])
 
   useEffect(() => {
     setProductsLoading(true);
@@ -367,10 +370,10 @@ const CheckoutPage = () => {
                       <img src={method?.icon} className="h-8" alt="" />
                       <div>
                         <h3>{method.name}</h3>
-                        <p
+                        <div
                           className="text-sm text-gray-500"
                           dangerouslySetInnerHTML={{ __html: method.context }}
-                        ></p>
+                        ></div>
                       </div>
 
                       <div
