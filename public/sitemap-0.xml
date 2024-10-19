@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://alzehrabygm.store/about</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-<url><loc>https://alzehrabygm.store/cart</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alzehrabygm.store/checkout</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alzehrabygm.store/order/confirmed</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alzehrabygm.store/contact</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<url><loc>https://alzehrabygm.store</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://alzehrabygm.store/product</loc><lastmod>2024-10-13T09:47:18.233Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alzehrabygm.store/about</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://alzehrabygm.store/cart</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alzehrabygm.store/checkout</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alzehrabygm.store/contact</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://alzehrabygm.store/order/confirmed</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alzehrabygm.store</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://alzehrabygm.store/product</loc><lastmod>2024-10-19T10:53:00.283Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://alzehrabygm.store/faq</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 <url><loc>https://alzehrabygm.store/product/access</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/active</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -16,9 +16,12 @@
 <url><loc>https://alzehrabygm.store/product/blu-waves</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/breaker</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/charming</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://alzehrabygm.store/product/choco-musk</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/delight-</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/emotion</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/excellence</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://alzehrabygm.store/product/existe-man</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://alzehrabygm.store/product/extreem</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/glacier</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/golden-scent-</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 <url><loc>https://alzehrabygm.store/product/ice-mountain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
