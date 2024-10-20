@@ -5,6 +5,7 @@ import HamburgerButton from "./HamburgerButton.jsx";
 import MobileNavbar from "./MobileNavbar.jsx";
 import Navbar from "../components/NavBar.jsx";
 import Image from "next/image";
+import Link from "next/link";
 
 const links = [
   {
@@ -35,6 +36,7 @@ export default function Header({children}) {
     <>
     {children}
     <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center gap-[103px] h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28">
+      <Link href={"/"}>
     <Image
         src="/logo.svg"
         alt="Al Zehra Perfumes"
@@ -42,7 +44,8 @@ export default function Header({children}) {
         height={60}
         draggable={false}
         className="select-none "
-      />
+        />
+        </Link>
       <Navbar links={links} />
       <div className="flex justify-center items-center gap-4 ml-auto">
         <CartButton />

@@ -62,6 +62,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <title>Al Zehra Perfumes</title>
+        <link rel="icon" href="/logo.svg" sizes="any" />
         <meta name="description" content="Al Zehra Perfumes store" />
         <noscript>
           <img
