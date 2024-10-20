@@ -17,12 +17,12 @@ export async function generateMetadata() {
   const productCount = products.length;
   const title =
     productCount > 0
-      ? `We have ${productCount} product${productCount > 1 ? "s" : ""} available!`
+      ? `Explore the Top ${productCount} best perfumes in pakistan | AL ZEHRA PERFUMES`
       : "No products available";
 
   return {
     title,
-    description: "Explore our range of products.",
+    description: " Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
   };
 }
 
