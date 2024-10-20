@@ -8,16 +8,11 @@ import CustomerBenefits from "./components/CustomerBenefits";
 import TestimonialSlider from "./components/testimonials-slider";
 
 export async function generateMetadata() {
-
-  const productCount = products.length;
-  const title =
-    productCount > 0
-      ? `Explore the Top ${productCount} best perfumes in pakistan | AL ZEHRA PERFUMES`
-      : "No products available";
+  const title = `Quality Fragrances in Pakistan | Al Zehra Perfumes`
 
   return {
     title,
-    description: " Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
+    description: "Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
   };
 }
 
