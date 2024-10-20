@@ -88,10 +88,10 @@ const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
 
-  const navigate = (page) => {
-    // Example: Navigate to '/about' page
-    router.push(`${page}`);
-  };
+  // const navigate = (page) => {
+  //   // Example: Navigate to '/about' page
+  //   router.push(`${page}`);
+  // };
 
   const getDiscountValue = (value, type, coupon_code_applied) => {
     setCouponCodeApplied(coupon_code_applied);
@@ -139,7 +139,7 @@ const CheckoutPage = () => {
           setShippingFees(shipping_fees);
           setAllProductTags(productTags);
         } else {
-          navigate("/cart");
+          router.push(`/cart`)
         }
       } else {
         try {
@@ -164,7 +164,7 @@ const CheckoutPage = () => {
             },
           ]);
         } catch (error) {
-          navigate("/");
+          router.push(`/`)
         }
       }
       if (coupon) {
@@ -258,7 +258,7 @@ const CheckoutPage = () => {
       }
       if (source == "cart") localStorage.removeItem("cart-items");
       toast.success("Your order has been placed");
-      navigate(
+      router.push(
         `/order/confirmed/${orderData.orderId}?paymentMethod=${orderData.payment.method}&name=${orderData.customer.firstName}&email=${orderData.customer.email}`
       );
     } catch (error) {
