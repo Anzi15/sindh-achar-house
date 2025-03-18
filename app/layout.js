@@ -15,7 +15,7 @@ import { db } from './lib/firebase/firbaseConfig';
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const hideHeaderFooter = pathname === '/checkout' || pathname.startsWith('/admin');
-  const [headerText, setHeaderText] = useState("Al Zehra Perfumes");
+  const [headerText, setHeaderText] = useState("GM FOODS | Home made achars");
 
   useEffect(() => {
     const fetchHeaderMsg = async () => {
@@ -61,7 +61,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <title>Al Zehra Perfumes</title>
+        <title>GM FOODS | Home made achar 
+        </title>
         <link rel="icon" href="/logo.svg" sizes="any" />
         <meta name="description" content="Al Zehra Perfumes store" />
         <noscript>
@@ -77,10 +78,7 @@ export default function RootLayout({ children }) {
         <ToastProvider>
           {!hideHeaderFooter && (
             <>
-              <Header>
-                <div className="w-full bg-black text-center py-2 text-white md:text-lg sm:text-sm text-[0.85rem]">
-                  {headerText}
-                </div>
+              <Header headerText={headerText}>
               </Header>
             </>
           )}

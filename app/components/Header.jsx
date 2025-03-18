@@ -1,53 +1,74 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CartButton from "./CartButton.jsx";
 import HamburgerButton from "./HamburgerButton.jsx";
 import MobileNavbar from "./MobileNavbar.jsx";
-import Navbar from "../components/NavBar.jsx";
+import Navbar from "./NavBar.jsx";
 import Image from "next/image";
 import Link from "next/link";
+import SearchBar from "./SearchBar.jsx";
+import { FaArrowRight } from "react-icons/fa";
 
-const links = [
-  {
-    id: 1,
-    name: "Home",
-    href: "/",
-  },
+const links = [ 
   {
     id: 2,
-    name: "Shop all",
-    href: "/products",
+    name: "Books",
+    href: "/books",
   },
   {
     id: 3,
     name: "About Us",
     href: "/about",
   },
+  // {
+  //   id: 4,
+  //   name: "Counseling",
+  //   href: "/consultation",
+  // },
   {
-    id: 4,
-    name: "Contact Us",
-    href: "/contact",
+    id: 5,
+    name: "Support Channel",
+    href: "/support",
+  },
+  {
+    id: 1,
+    name: "Ask Question",
+    href: "/ask-question",
+  },
+  {
+    id: 6,
+    name: "Skype me now",
+    href: "/consultation",
   },
 ];
 
-export default function Header({children}) {
+export default function Header({children, headerText}) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   return (
     <>
     {children}
-    <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center gap-[103px] h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28">
+    <a href="/consultation">
+
+    <div className="w-full bg-brandOrange p-2 text-center text-white group transition-all hover:text-[1.05rem] text-md flex gap-2 hover:gap-4 items-center justify-center py-2">
+      {headerText}
+      <FaArrowRight />
+    </div>
+    </a>
+    <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center gap-[103px] h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28 my-4 justice ">
       <Link href={"/"}>
     <Image
         src="/logo.svg"
-        alt="Al Zehra Perfumes"
-        width={60}
-        height={60}
+        alt="Mind that seeks truth | Break up cures | HOCD OCD"
+        width={120}
+        height={120}
         draggable={false}
-        className="select-none "
-        />
+        className="select-none h-[90%] aspect-square"
+        onContextMenu={(e)=>{e.preventDefault()}}
+        /> 
         </Link>
       <Navbar links={links} />
-      <div className="flex justify-center items-center gap-4 ml-auto">
+      <div className="flex justify-center items-center gap-4 ml-auto w-[13rem]">
+      <SearchBar type="meow" />
         <CartButton />
         <HamburgerButton onClick={() => setIsMobileOpen(!isMobileOpen)} />
       </div>

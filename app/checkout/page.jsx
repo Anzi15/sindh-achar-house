@@ -54,8 +54,6 @@ const paymentMethods = [
   },
 ];
 
-
-
 const CheckoutPage = () => {
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
@@ -116,9 +114,9 @@ const CheckoutPage = () => {
     setCalculationsLoading(false);
   }, [products]);
 
-  useEffect(()=>{
-    setCartItems(JSON.parse(localStorage.getItem("cart-items")))
-  },[])
+  useEffect(() => {
+    setCartItems(JSON.parse(localStorage.getItem("cart-items")));
+  }, []);
 
   useEffect(() => {
     setProductsLoading(true);
@@ -139,7 +137,7 @@ const CheckoutPage = () => {
           setShippingFees(shipping_fees);
           setAllProductTags(productTags);
         } else {
-          router.push(`/cart`)
+          router.push(`/cart`);
         }
       } else {
         try {
@@ -164,7 +162,7 @@ const CheckoutPage = () => {
             },
           ]);
         } catch (error) {
-          router.push(`/`)
+          router.push(`/`);
         }
       }
       if (coupon) {
@@ -179,13 +177,14 @@ const CheckoutPage = () => {
   }, [products, subTotal, shippingFees, discountValue]);
 
   function generateOrderId(length = 8) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let orderId = '';
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let orderId = "";
     for (let i = 0; i < length; i++) {
-        orderId += chars.charAt(Math.floor(Math.random() * chars.length));
+      orderId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return orderId;
-}
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -360,7 +359,8 @@ const CheckoutPage = () => {
                   return (
                     <div
                       className={`lg:w-[48%] w-full transition-all duration-300 rounded-xl text-left gap-4 select-none  px-3 py-5 relative border-2 cursor-pointer flex items-center ${
-                        method.identifier == paymentMethod && "border-brandRed"
+                        method.identifier == paymentMethod &&
+                        "border-brandOrange"
                       } justify-start`}
                       key={i}
                       onClick={(e) => {
@@ -377,7 +377,7 @@ const CheckoutPage = () => {
                       </div>
 
                       <div
-                        className={`bg-brandRed w-fit  p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2 ${
+                        className={`bg-brandOrange w-fit  p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2 ${
                           paymentMethod == method.identifier ? "flex" : "hidden"
                         }`}
                       >

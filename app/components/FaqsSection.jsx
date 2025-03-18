@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 const FaqsSection = () => {
   const [activeAccordion, setActiveAccordion] = useState(null);
@@ -17,14 +17,16 @@ const FaqsSection = () => {
               src="https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/images%2Fpavlo-t-MfGoZ-QoJFc-unsplash.jpg?alt=media&token=ed302f67-c79d-43e8-a63e-9b5bcfa582f9"
               alt="FAQ tailwind section"
               draggable={false}
-            onContextMenu={(e)=>{e.preventDefault()}}
+              onContextMenu={(e) => {
+                e.preventDefault();
+              }}
               className="skeleton-loading max-h-[80vw] aspect-[9/16] w-full rounded-xl select-none object-cover"
             />
           </div>
           <div className="w-full lg:w-1/2">
             <div className="lg:max-w-xl">
               <div className="mb-6 lg:mb-16">
-                <h6 className="text-lg text-center font-medium text-brandRed mb-2 lg:text-left">
+                <h6 className="text-lg text-center font-medium text-brandOrange mb-2 lg:text-left">
                   FAQs
                 </h6>
                 <h2 className="text-4xl text-center font-bold text-gray-900 leading-[3.25rem] mb-5 lg:text-left">
@@ -34,38 +36,47 @@ const FaqsSection = () => {
               <div className="accordion-group text-left">
                 {[
                   {
-                    question: 'What types of perfumes do you offer?',
-                    answer: 'At Al Zehra By GM, we offer a diverse range of high-quality perfumes including floral, oriental, woody, and fresh scents. Each fragrance is crafted to provide a unique and captivating aroma to suit every preference.',
+                    question: "What types of perfumes do you offer?",
+                    answer:
+                      "At Al Zehra By GM, we offer a diverse range of high-quality perfumes including floral, oriental, woody, and fresh scents. Each fragrance is crafted to provide a unique and captivating aroma to suit every preference.",
                   },
                   {
-                    question: 'How can I place an order?',
-                    answer: 'To place an order, visit our website and browse through our selection of perfumes. Once you find your desired product, add it to your cart and proceed to checkout. Follow the prompts to enter your shipping details and payment information to complete your order.',
+                    question: "How can I place an order?",
+                    answer:
+                      "To place an order, visit our website and browse through our selection of perfumes. Once you find your desired product, add it to your cart and proceed to checkout. Follow the prompts to enter your shipping details and payment information to complete your order.",
                   },
                   {
-                    question: 'Can I return or exchange a product?',
-                    answer: 'Yes, we offer a return and exchange policy. If you are not satisfied with your purchase, please contact our customer service within 14 days of receiving the product. We will provide instructions for returning the item and processing your refund or exchange.',
+                    question: "Can I return or exchange a product?",
+                    answer:
+                      "Yes, we offer a return and exchange policy. If you are not satisfied with your purchase, please contact our customer service within 14 days of receiving the product. We will provide instructions for returning the item and processing your refund or exchange.",
                   },
                   {
-                    question: 'How do I track my order?',
-                    answer: 'Once your order is shipped, you will receive a confirmation email with a tracking number. Use this number to track your shipment through our courier’s website or contact our customer service for assistance.',
+                    question: "How do I track my order?",
+                    answer:
+                      "Once your order is shipped, you will receive a confirmation email with a tracking number. Use this number to track your shipment through our courier’s website or contact our customer service for assistance.",
                   },
                   {
-                    question: 'Do you offer international shipping?',
-                    answer: 'Currently, we offer shipping within Pakistan. For international shipping options, please reach out to our customer service team for more information on availability and rates.',
+                    question: "Do you offer international shipping?",
+                    answer:
+                      "Currently, we offer shipping within Pakistan. For international shipping options, please reach out to our customer service team for more information on availability and rates.",
                   },
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className={`accordion py-8 border-b border-solid border-gray-200 ${activeAccordion === index ? 'active' : ''}`}
+                    className={`accordion py-8 border-b border-solid border-gray-200 ${
+                      activeAccordion === index ? "active" : ""
+                    }`}
                   >
                     <button
-                      className="accordion-toggle group inline-flex items-center justify-between md:text-xl text-lg font-normal leading-8 text-gray-600 w-full transition duration-500 hover:text-brandRed accordion-active:text-indigo-600 accordion-active:font-medium focus-within::text-brandRed"
+                      className="accordion-toggle group inline-flex items-center justify-between md:text-xl text-lg font-normal leading-8 text-gray-600 w-full transition duration-500 hover:text-brandOrange accordion-active:text-indigo-600 accordion-active:font-medium focus-within::text-brandOrange"
                       onClick={() => toggleAccordion(index)}
                       aria-controls={`accordion-content-${index}`}
                     >
                       <h5>{item.question}</h5>
                       <svg
-                        className={`text-gray-900 transition duration-500 group-hover:text-brandRed accordion-active:text-indigo-600 ${activeAccordion === index ? 'rotate-180' : ''}`}
+                        className={`text-gray-900 transition duration-500 group-hover:text-brandOrange accordion-active:text-indigo-600 ${
+                          activeAccordion === index ? "rotate-180" : ""
+                        }`}
                         width="22"
                         height="22"
                         viewBox="0 0 22 22"
@@ -83,10 +94,14 @@ const FaqsSection = () => {
                     </button>
                     <div
                       id={`accordion-content-${index}`}
-                      className={`accordion-content w-full px-0 overflow-hidden pr-4 ${activeAccordion === index ? 'max-h-40' : 'max-h-0'}`}
+                      className={`accordion-content w-full px-0 overflow-hidden pr-4 ${
+                        activeAccordion === index ? "max-h-40" : "max-h-0"
+                      }`}
                       aria-labelledby={`accordion-heading-${index}`}
                     >
-                      <p className="text-base text-gray-500 font-normal">{item.answer}</p>
+                      <p className="text-base text-gray-500 font-normal">
+                        {item.answer}
+                      </p>
                     </div>
                   </div>
                 ))}

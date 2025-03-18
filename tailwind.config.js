@@ -9,8 +9,8 @@ module.exports = withMT({
   theme: {
     extend: {
       colors:{
-        brandBrown: "#5E2C05",
-        brandRed: "#BC3434"
+        brandOrange: "#FE7F00",
+        brandRed: "#FF3131"
       },
       backgroudImage:{
         'low-resolution-hero-cover':"url(/src/assets/website cover blur 100.png)"

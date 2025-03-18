@@ -6,6 +6,9 @@ import Link from "next/link";
 import ProductCardGroup from "../components/ProductCardGroup";
 import ProductFilters from "../components/ProductsFilters";
 
+import { GiHamburgerMenu } from "react-icons/gi";
+import ProductsPageUi from "../components/ProductsPageUi";
+
 export async function generateMetadata() {
   const docs = await getDocs(collection(db, "Products"));
   const products = [];
@@ -63,8 +66,8 @@ export default async function ProductsPage({ searchParams }) {
 
   return (
     <div>
-      <div className="px-6 flex w-full justify-between items-center">
-        <h1 className="text-[3rem] text-left">Products</h1>
+      <div className="px-6 flex w-full justify-between items-center py-4">
+        <h1 className="md:text-[3rem] text-3xl flex  items-center">Products</h1>
 
         <Menu as="div" className="relative inline-block text-left">
           <div>
@@ -94,9 +97,7 @@ export default async function ProductsPage({ searchParams }) {
           </MenuItems>
         </Menu>
       </div>
-      <div className="products-list">
-        <ProductCardGroup products={products} />
-      </div>
+     <ProductsPageUi products={products}/>
     </div>
   );
 }

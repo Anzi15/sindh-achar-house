@@ -87,23 +87,23 @@ const Footer = () => {
   
       <div className="sm:flex sm:items-center sm:justify-between">
       <p className="font-sans p-8 text-start md:text-center md:text-lg md:p-4">
-        © {currentYear} Al Zehra By GM. All rights reserved.
+        © {currentYear} GM FOODS. All rights reserved.
       </p>
   
         <div className="flex gap-4 hover:cursor-pointer items-center md:justify-normal justify-center">
-          <Link href={"https://wa.link/kljcq1"} target="_blank">
+          <Link href={"https://wa.me/923053820015?text=AOA"} target="_blank">
           <FaWhatsappSquare className="text-4xl transition-all hover:scale-105" />
           </Link>
 
-          <Link href={"https://www.facebook.com/profile.php?id=61562034141262"} target="_blank">
+          <Link href={"https://www.facebook.com/share/15mtwwwVqm/"} target="_blank">
           <FaFacebookSquare  className="text-4xl transition-all hover:scale-105" />
           </Link>
 
-          <Link href={"https://www.instagram.com/alzehrabygm"} target="_blank">
+          <Link href={"https://www.instagram.com/gm_foodz/"} target="_blank">
           <FaInstagramSquare  className="text-4xl transition-all hover:scale-105" />
           </Link>
         
-          <Link href={"https://www.tiktok.com/@al.zehra"} target="_blank">
+          <Link href={"https://www.tiktok.com/@gm_foodz"} target="_blank">
           <AiFillTikTok  className="text text-[2.6rem] transition-all hover:scale-105" />
           </Link>
         </div>

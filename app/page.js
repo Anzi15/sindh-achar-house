@@ -8,14 +8,14 @@ import CustomerBenefits from "./components/CustomerBenefits";
 import TestimonialSlider from "./components/testimonials-slider";
 
 export async function generateMetadata() {
-  const title = `Quality Fragrances in Pakistan | Al Zehra Perfumes`
+  const title = `Quality Fragrances in Pakistan | Al Zehra Perfumes`;
 
   return {
     title,
-    description: "Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
+    description:
+      "Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
   };
 }
-
 
 export default async function Home() {
   const topProducts = [];
@@ -118,17 +118,15 @@ export default async function Home() {
   return (
     <main>
       <div className="w-screen flex items-center justify-center">
-        <Image
-          src="/website cover.png"
-          srcSet={`/website cover 640 px.png 640w, /website cover 800 px.png 800w, $/website cover.png 1280w`}
-          sizes="(max-width: 640px) 640px, (max-width: 800px) 800px, 100vw"
-          alt="Website Cover"
-          className="aspect-video w-full skeleton-loading"
-          layout="responsive" // Maintain aspect ratio
-          width={1280} // Specify width of the image
-          height={720}
-          priority={true} // Specify height of the image for aspect ratio
-        />
+            <Image
+              src="/cover.png"
+              alt="Website Cover"
+              className="aspect-video w-full skeleton-loading"
+              layout="responsive"
+              width={1280}
+              height={720}
+              priority
+            />
       </div>
 
       <ProductCardGroup
@@ -161,76 +159,6 @@ export default async function Home() {
               "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fwestern.png?alt=media&token=a32f510e-56be-492a-9eb1-096307b3ac29",
             name: "western",
             slug: "western",
-          },
-        ]}
-      />
-
-      <ProductCardGroup
-        products={bestSeller}
-        groupHeading={"Our best sellers"}
-        link={"/products"}
-      />
-
-      <CollectionCardGroup
-        collectionsArray={[
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Foffice.png?alt=media&token=d6ea9605-9640-4cd6-a0cc-3e215ed8e42e",
-            name: "Office",
-            slug: "office",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fschool.png?alt=media&token=e73dc7d5-96a7-4d4f-8b7a-358e2e87ab4a",
-            name: "school",
-            slug: "school",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fparty.png?alt=media&token=ce3790b6-175b-4704-abb0-89ae0c5ecd5e",
-            name: "party",
-            slug: "party",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fwedding.png?alt=media&token=d5e1b66f-35d9-4113-a38f-0a2bb8c0485f",
-            name: "wedding",
-            slug: "wedding",
-          },
-        ]}
-      />
-
-      <ProductCardGroup
-        products={newArrival}
-        groupHeading={"Latest Arrivals"}
-        link={"/products"}
-      />
-
-      <CollectionCardGroup
-        collectionsArray={[
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fsoft.png?alt=media&token=b4041503-af4b-4d6f-a125-fada610e3f46",
-            name: "Soft",
-            slug: "soft",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fhard.png?alt=media&token=aa6dbf49-7626-4176-8497-b8d47c49c6ce",
-            name: "hard",
-            slug: "hard",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fsummer.png?alt=media&token=a45fddf6-5b9c-464d-aff7-517704588904",
-            name: "summer",
-            slug: "summer",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fwinter.png?alt=media&token=34335f97-68ab-4ae4-9f25-7c9a11d381f9",
-            name: "winter",
-            slug: "winter",
           },
         ]}
       />
@@ -283,7 +211,10 @@ export default async function Home() {
               Can't figure out where to begin?
             </h1>
             <div className="md:w-1/2 pl-4 flex md:justify-start justify-center my-6">
-              <Link className="bg-brandRed text-white px-6 py-3 rounded-full hover:bg-red-800 transition-all duration-100 font-bold" href="/collection/tester">
+              <Link
+                className="bg-brandOrange text-white px-6 py-3 rounded-full hover:bg-red-800 transition-all duration-100 font-bold"
+                href="/collection/tester"
+              >
                 Try Our Samples
               </Link>
             </div>

@@ -10,12 +10,12 @@ import CustomerBenefits from "@/app/components/CustomerBenefits";
 import TestimonialSlider from "@/app/components/testimonials-slider";
 import ProductSuggestions from "@/app/components/ProductSuggestions";
 
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
   const productDoc = await getDoc(doc(db, "Products", params.productId));
-  const productData = {...productDoc.data(), id:productDoc.id}
+  const productData = { ...productDoc.data(), id: productDoc.id };
 
   const title = `${productData.title} | Best Selling Fragrance `;
-  const description= productData.description
+  const description = productData.description;
 
   return {
     title,
@@ -23,72 +23,63 @@ export async function generateMetadata({params}) {
   };
 }
 
-export default async function ProductsPage({params}) {
-    const productDoc = await getDoc(doc(db, "Products", params.productId));
-    const productData = {...productDoc.data(), id:productDoc.id}
+export default async function ProductsPage({ params }) {
+  const productDoc = await getDoc(doc(db, "Products", params.productId));
+  const productData = { ...productDoc.data(), id: productDoc.id };
 
   return (
     <>
-    <main className="flex justify-evenly w-full md:flex-row flex-col relative h-full">
+      <main className="flex justify-evenly w-full md:flex-row flex-col relative h-full">
         <ProductImgsCarousel
           className=" md:max-h-[565px] md:max-w-[445px] md:gap-8"
           parsedProductImages={JSON.stringify([
-            productData.primaryImg,
-            productData.secondary1Img,
-            productData.secondary2Img,
-          ])}
-          parsedThumbnails={JSON.stringify([
-            productData.primaryImgThumbnails[0].url,
-            productData.secondary1ImgThumbnails[0].url,
-            productData.secondary2ImgThumbnails[0].url,
+            productData?.primaryImg,
           ])}
         />
-          <ProductPageUi parsedProduct={JSON.stringify(productData)}/>
-
-          
+        <ProductPageUi parsedProduct={JSON.stringify(productData)} />
       </main>
 
       <div className="description px-8 md:py-[8rem] py-[5rem]">
         <h3 className="text-left">
           <b>Description</b>
         </h3>
-        {<HtmlRenderer rawHtml={productData.descriptionHtml} />}
+        {<HtmlRenderer rawHtml={productData.description} />}
       </div>
 
-      <div className="bg-black w-full  overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
+      <div className="bg-yellow-600 w-full overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
         <Image
           className="opacity-50 w-full object-cover h-full absolute inset-0 z-[1]"
-          src={"/jessica-weiller-So4eFi-d1nc-unsplash.webp"}
-          alt="Perfume bottle"
+          src={"/aachar-banner.jpg"} // Change to an aachar-related image
+          alt="Homemade Aachar"
           width={2144}
           height={1072}
         />
         <h1 className="z-[2] md:text-5xl text-3xl text-white font-bold font-serif">
-          It's All About Luxury
+          The Taste of Tradition
         </h1>
         <p className="z-[1] text-gray-100 md:w-[35%]">
-          Discover a world of enchanting fragrances that will elevate your
-          personality to new heights of beauty and charm.
+          Experience the authentic flavors of homemade aachars, crafted with the
+          finest ingredients and traditional recipes.
         </p>
       </div>
 
+      {/* Section: Why Our Aachar? */}
       <div className="flex justify-center md:flex-row flex-col-reverse my-12">
         <div className="md:w-1/2 w-full flex flex-col md:items-end p-10 gap-8 justify-center">
-          <h1 className=" md:text-4xl text-left text-3xl font-bold  text-brandRed md:w-[80%]">
-            Fragrance with a Purpose
+          <h1 className="md:text-4xl text-left text-3xl font-bold text-brandRed md:w-[80%]">
+            Handcrafted with Love & Tradition
           </h1>
           <p className="text-left md:w-[80%]">
-            Experience the harmony of elegance and practicality with our curated
-            selection of signature perfumes. Each scent is crafted to offer a
-            unique sensory journey while complementing your personal style and
-            enhancing your daily presence.
+            Our aachars are made using time-tested recipes, pure ingredients,
+            and the perfect blend of spices. No preservatives, just pure
+            homemade goodness.
           </p>
         </div>
         <div className="md:w-1/2 w-screen flex justify-center items-center">
           <Image
-            src={"/olena-bohovyk-KPkR3e6BZG0-unsplash.webp"}
+            src={"/homemade-aachar.jpg"} // Change to an aachar-related image
             className="md:w-[80%] w-[90%] rounded-lg"
-            alt="Perfume pakistan"
+            alt="Homemade Aachar"
             width={640}
             height={640}
           />
@@ -97,54 +88,53 @@ export default async function ProductsPage({params}) {
 
       <CustomerBenefits />
 
+      {/* Section: Quality Ingredients */}
       <div className="flex w-[98%] justify-center py-9 flex-wrap md:px-4">
         <Image
-          src={"/lavender-bottle.webp"}
+          src={"/organic-aachar.jpg"} // Change to an aachar-related image
           className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
           width={1280}
           height={828}
-          alt="Lavender fragrance pakistan | best perfumes"
+          alt="Organic Aachar Ingredients"
         />
         <div className="md:w-1/2 w-full flex flex-col md:items-end p-10 gap-8 justify-center">
-          <h1 className=" md:text-4xl text-left text-3xl font-bold  text-brandRed md:w-[80%] w-full">
-            Elevate Your Senses with Exquisite Fragrances
+          <h1 className="md:text-4xl text-left text-3xl font-bold text-brandRed md:w-[80%] w-full">
+            Pure & Organic Ingredients
           </h1>
           <p className="text-left md:w-[80%]">
-            Transform your daily routine into a luxurious experience with our
-            premium collection of perfumes. Crafted with the finest ingredients,
-            each scent embodies elegance and sophistication, making it the
-            perfect companion for any occasion.
+            We use fresh, organic vegetables and high-quality spices to ensure
+            that every jar of aachar is full of natural flavor and goodness.
           </p>
         </div>
       </div>
 
+      {/* Section: Perfect with Every Meal */}
       <div className="flex w-[98%] justify-center py-9 flex-wrap">
         <div className="md:w-1/2 w-full flex flex-col md:items-end p-10 gap-8 justify-center md:px-4">
-          <h1 className=" md:text-4xl text-left text-3xl font-bold  text-brandRed md:w-[80%] w-full">
-            Discover Your Signature Scent
+          <h1 className="md:text-4xl text-left text-3xl font-bold text-brandRed md:w-[80%] w-full">
+            The Perfect Companion for Every Meal
           </h1>
           <p className="text-left md:w-[80%]">
-            Discover the art of self-expression with our captivating range of
-            fragrances. Whether you prefer the allure of a floral bouquet or the
-            depth of a woody aroma, our perfumes are designed to leave a lasting
-            impression, effortlessly enhancing your presence.
+            Add a spicy and tangy kick to your meals with our aachars. Whether
+            with parathas, daal chawal, or snacks, it's the perfect sidekick for
+            your cravings.
           </p>
         </div>
         <Image
-        width={1280}
-        height={828}
-          src={"/scent-of-roses.webp"}
+          width={1280}
+          height={828}
+          src={"/aachar-meal.jpg"} // Change to an aachar-related image
           className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
-          alt="rose bottle perfumes "
+          alt="Aachar with Meal"
         />
       </div>
 
-      <TestimonialSlider bgColor="blue-500" textColor="black" />
+      <TestimonialSlider bgColor="yellow-600" textColor="black" />
 
-        <ProductSuggestions
-          heading="You might also like:"
-          dontUse={productData.title}
-        />
+      <ProductSuggestions
+        heading="You might also like:"
+        dontUse={productData.title}
+      />
     </>
   );
 }
