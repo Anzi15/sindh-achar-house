@@ -14,8 +14,8 @@ import {
 export default function TestimonialSlider({ testimonials = [
   {
     quote:
-      "I was blown away by the quality of the fragrances from Al Zehra By GM! The scent is long-lasting, and the packaging was so elegant. I'll definitely be ordering again.",
-    name: "Ayesha Khan",
+      "The taste of Gm foods achar is so delicious and perfect for our taste buds, quality is also remarkable so being a dietitian i am recommended.",
+    name: "Dr Maryam Jamil",
     imgSrc: "https://i.pravatar.cc/120?img=1",
   },
   {
