@@ -1,16 +1,17 @@
 import clsx from "clsx";
-import Link  from "next/link"; // Use Link correctly
-import Image from "next/image"; // Correctly import Image
+import Link from "next/link";
+import Image from "next/image";
+import SearchBar from "./SearchBar";
 
 function MobileNavbar({ links, isMobileOpen, onClick }) {
   return (
     <div
       className={clsx(
-        isMobileOpen && "translate-x-0",
-        !isMobileOpen && "-translate-x-full",
-        "w-[359px] h-[812px] bg-white pl-8 pr-4 pt-8 pb-4 absolute top-0 left-0 flex flex-col gap-6 transition-transform duration-[400ms] ease-linear z-50"
+        isMobileOpen ? "translate-x-0" : "-translate-x-full",
+        "fixed top-0 left-0 w-[359px] h-screen bg-white px-6 pt-8 pb-4 flex flex-col gap-6 transition-transform duration-400 ease-linear z-50 shadow-lg overflow-y-auto"
       )}
     >
+      {/* Header */}
       <header className="flex items-center justify-between">
         <Image
           src="/logo.svg"
@@ -18,7 +19,7 @@ function MobileNavbar({ links, isMobileOpen, onClick }) {
           width={60}
           height={60}
           draggable={false}
-          className="select-none "
+          className="select-none"
         />
         <button
           className="h-5 aspect-square cursor-pointer text-neutral-600 focus:rounded focus:outline-none focus:ring-4 focus:ring-indigo-600/[.12]"
@@ -33,14 +34,24 @@ function MobileNavbar({ links, isMobileOpen, onClick }) {
           </svg>
         </button>
       </header>
-      <div className="flex flex-col gap-4 py-6 justify-start">
-        {links.map((link) => {
-          return (
-            <Link key={link.id} className="flex justify-start text-lg" href={link.href} onClick={onClick}>
-              {link.name}
-            </Link>
-          );
-        })}
+
+      {/* Search Bar - Now Always Visible */}
+      <div className="w-full">
+        <SearchBar />
+      </div>
+
+      {/* Navigation Links (Auto Close on Click) */}
+      <div className="flex flex-col gap-4 py-6">
+        {links.map((link) => (
+          <Link
+            key={link.id}
+            className="flex text-lg"
+            href={link.href}
+            onClick={onClick} // Auto-closes sidebar
+          >
+            {link.name}
+          </Link>
+        ))}
       </div>
     </div>
   );
