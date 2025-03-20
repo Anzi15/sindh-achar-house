@@ -140,7 +140,7 @@ export default async function Home() {
         groupHeading={"Top Products"}
         link={"/products"}
       />
-      <CollectionCardGroup
+      {/* <CollectionCardGroup
         collectionsArray={[
           {
             image:
@@ -167,9 +167,9 @@ export default async function Home() {
             slug: "western",
           },
         ]}
-      />
+      /> */}
 
-      <section className="grid md:grid-cols-2 grid-cols-1 gap-8 p-8">
+      {/* <section className="grid md:grid-cols-2 grid-cols-1 gap-8 p-8">
         <Link
           className="hover:scale-105 transition-all"
           href={"/collection/tester"}
@@ -226,7 +226,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <CustomerBenefits />
 

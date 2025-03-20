@@ -74,8 +74,8 @@ export default function RootLayout({ children }) {
           />
         </noscript>
       </Head>
-      <body className="antialiased" suppressHydrationWarning={true}>
         <ToastProvider>
+      <body className="antialiased" suppressHydrationWarning={true}>
           {!hideHeaderFooter && (
             <>
               <Header headerText={headerText}>
@@ -88,8 +88,8 @@ export default function RootLayout({ children }) {
               <Footer />
             </>
           )}
-        </ToastProvider>
       </body>
+        </ToastProvider>
     </html>
   );
 }

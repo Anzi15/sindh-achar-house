@@ -12,33 +12,33 @@ import { FaArrowRight } from "react-icons/fa";
 const links = [ 
   {
     id: 2,
-    name: "Books",
-    href: "/books",
+    name: "All Products",
+    href: "/products",
+  },
+  {
+    id: 1,
+    name: "Achars",
+    href: "/collection/achar",
+  },
+  {
+    id: 6,
+    name: "Chutneys",
+    href: "/collection/chutney",
+  },
+  {
+    id: 6,
+    name: "Murabbas",
+    href: "/collection/murabba",
   },
   {
     id: 3,
     name: "About Us",
     href: "/about",
   },
-  // {
-  //   id: 4,
-  //   name: "Counseling",
-  //   href: "/consultation",
-  // },
   {
     id: 5,
-    name: "Support Channel",
-    href: "/support",
-  },
-  {
-    id: 1,
-    name: "Ask Question",
-    href: "/ask-question",
-  },
-  {
-    id: 6,
-    name: "Skype me now",
-    href: "/consultation",
+    name: "Contact Us",
+    href: "/contact",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function Header({children, headerText}) {
       <Link href={"/"}>
     <Image
         src="/logo.svg"
-        alt="Mind that seeks truth | Break up cures | HOCD OCD"
+        alt="Achars"
         width={120}
         height={120}
         draggable={false}

@@ -46,10 +46,10 @@ const ConfirmationEmail = (email, name) => {
         
         <p>Your order will arrive in 3-5 working days. If you have any questions or need further assistance, please do not hesitate to contact us.</p>
         <p>Thank you for shopping with us!</p>
-        <p>Best regards,<br>Al Zehra Perfumes</p>
+        <p>Best regards,<br>GM FOODZ</p>
         <div class="footer">
             <p>If you did not place this order, please contact our support team immediately.</p>
-            <p>Al Zehra Perfumes<br>Main Lakhi der, shikarpur, sindh pakistan<br>+92 332 3947336<br>info@alzehrabygm.store</p>
+
         </div>
     </div>
 </body>

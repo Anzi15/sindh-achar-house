@@ -31,25 +31,25 @@ const paymentMethods = [
     context: "Purchase goods, pay when they arrive",
     identifier: "COD",
   },
-  {
-    icon: "/Jazz cash logo vector.webp",
-    name: "JazzCash",
-    context:
-      "Send your payment to JazzCash on this number: <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using jazzcash for a order on your website' target='_blank'>03323947336 </a>, and <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to share my payment receipt' target='_blank'> send us a screenshot </a>",
-    identifier: "JZC",
-  },
+  // {
+  //   icon: "/Jazz cash logo vector.webp",
+  //   name: "JazzCash",
+  //   context:
+  //     "Send your payment to JazzCash on this number: <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using jazzcash for a order on your website' target='_blank'>03323947336 </a>, and <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to share my payment receipt' target='_blank'> send us a screenshot </a>",
+  //   identifier: "JZC",
+  // },
   {
     icon: "/easypaisa.webp",
     name: "EasyPaisa",
     context:
-      "Send your payment to easypaisa on this number: <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using easypasia for a order on your website' target='_blank'>03323947336 </a>, and <a class='text-light-blue-800' target='_blank' href='https://wa.me/923323947336?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
+      "Send your payment to easypaisa on this number: <a class='text-light-blue-800' href='https://wa.me/923053820015?text=Hi, please guide me i want to pay using easypasia for a order on your website' target='_blank'>03337280556 </a>, and <a class='text-light-blue-800' target='_blank' href='https://wa.me/923053820015?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
     identifier: "EZP",
   },
   {
     icon: "/bank.webp",
     name: "Bank Transfer",
     context:
-      "Send your payment to this IBAN number:  <a class='text-light-blue-800' href='https://wa.me/923323947336?text=Hi, please guide me i want to pay using bank transfer for a order on your website' target='_blank'>PK05 BAHL 1252 0981 0005 9601</a>",
+      "Meezan Bank  <br/> Account Number: <b> 98300108817324 </b> <br/>  <a class='text-light-blue-800' target='_blank' href='https://wa.me/923053820015?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
     identifier: "BT",
   },
 ];
@@ -69,6 +69,7 @@ const CheckoutPage = () => {
   const [state, setState] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [cartItemsLoading, setCartItemsLoading] = useState(true);
 
   const [products, setProducts] = useState([]);
   const [subTotal, setSubTotal] = useState(null);
@@ -85,11 +86,6 @@ const CheckoutPage = () => {
   const [couponCodeApplied, setCouponCodeApplied] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const router = useRouter();
-
-  // const navigate = (page) => {
-  //   // Example: Navigate to '/about' page
-  //   router.push(`${page}`);
-  // };
 
   const getDiscountValue = (value, type, coupon_code_applied) => {
     setCouponCodeApplied(coupon_code_applied);
@@ -110,17 +106,21 @@ const CheckoutPage = () => {
       subtotal += JSON.parse(product.selectedVariant.price) * product.quantity;
     });
     setSubTotal(subtotal);
-    setShippingFees(subtotal > 1500 ? 0 : 300);
+    setShippingFees(subtotal > 2200 ? 0 : 150);
     setCalculationsLoading(false);
   }, [products]);
 
   useEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem("cart-items")));
+    const storedCartItems =JSON.parse(localStorage.getItem("cart-items")) || [];
+    if (storedCartItems) {
+      setCartItems(storedCartItems);
+      setCartItemsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
-    setProductsLoading(true);
     const getProducts = async () => {
+      setProductsLoading(true);
       if (source == "cart") {
         if (cartItems?.length) {
           let subtotal = 0;
@@ -131,13 +131,14 @@ const CheckoutPage = () => {
             productTags.push(item.tags);
           });
           setProducts([...cartItems]);
-          setProductsLoading(false);
           setSubTotal(subtotal);
           const shipping_fees = subtotal > 1500 ? 0 : 300;
           setShippingFees(shipping_fees);
           setAllProductTags(productTags);
         } else {
+          if(cartItemsLoading) return
           router.push(`/cart`);
+          return;
         }
       } else {
         try {
@@ -152,29 +153,25 @@ const CheckoutPage = () => {
               product: productData,
             },
           ]);
-          setProductsLoading(false);
-
-          console.log([
-            {
-              data: productData,
-              quantity: parseInt(quantity),
-              productId: null,
-            },
-          ]);
         } catch (error) {
           router.push(`/`);
+          return;
         }
       }
       if (coupon) {
         setCouponCodeApplied(coupon);
       }
+      setProductsLoading(false);
     };
 
     getProducts();
-  }, [source, quantity]);
+  }, [source, quantity, coupon, selectedVariantIndex, cartItems, router]);
+
   useEffect(() => {
-    setTotal(subTotal + shippingFees - discountValue);
-  }, [products, subTotal, shippingFees, discountValue]);
+    if (subTotal !== null && shippingFees !== null) {
+      setTotal(subTotal + shippingFees - discountValue);
+    }
+  }, [subTotal, shippingFees, discountValue]);
 
   function generateOrderId(length = 8) {
     const chars =
@@ -189,7 +186,6 @@ const CheckoutPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmissionLoading(true);
-    let success = false;
     const orderData = {
       orderId: generateOrderId(),
       customer: {
@@ -223,7 +219,7 @@ const CheckoutPage = () => {
       grandTotal: total,
       ConfirmationEmailSent: false,
     };
-
+  
     try {
       await setDoc(doc(db, "orders", orderData.orderId), orderData);
       if (discountValue > 0) {
@@ -231,56 +227,58 @@ const CheckoutPage = () => {
           collection(db, "coupons"),
           where("couponCode", "==", couponCodeApplied)
         );
-
+  
         const querySnapshot = await getDocs(q);
-
+  
         if (!querySnapshot.empty) {
           // Assuming there's only one document with this couponCode
           const docRef = doc(db, "coupons", querySnapshot.docs[0].id);
           const docSnap = querySnapshot.docs[0];
-
+  
           const docSnapData = docSnap.data();
-          console.warn(docSnapData);
-
+  
           // Increment the usedCount field
           const updatedUsedCount = (docSnapData.usedCount || 0) + 1;
-
-          console.log({ ...docSnapData, usedCount: updatedUsedCount });
-
+  
           // Update the document with the new usedCount
           await updateDoc(docRef, {
             usedCount: updatedUsedCount,
           });
-        } else {
-          console.warn("No document found with the specified couponCode");
         }
       }
       if (source == "cart") localStorage.removeItem("cart-items");
       toast.success("Your order has been placed");
-      router.push(
-        `/order/confirmed/${orderData.orderId}?paymentMethod=${orderData.payment.method}&name=${orderData.customer.firstName}&email=${orderData.customer.email}`
-      );
+      
+      // Format the date from the Timestamp
+      const orderDate = orderData.createdAt.toDate().toLocaleDateString();
+      
+      // Construct the URL with all relevant order parameters
+      const confirmationUrl = `/order/confirmed?` + 
+        `orderId=${orderData.orderId}` +
+        `&paymentMethod=${orderData.payment.method}` +
+        `&name=${encodeURIComponent(orderData.customer.firstName + ' ' + orderData.customer.lastName)}` +
+        `&email=${encodeURIComponent(orderData.customer.email)}` +
+        `&date=${encodeURIComponent(orderDate)}` +
+        `&total=${orderData.grandTotal}` +
+        `&items=${orderData.items.length}`;
+      
+      router.push(confirmationUrl);
     } catch (error) {
       console.log("there a error");
       console.log(error);
-      success = false;
     } finally {
+      setIsSubmissionLoading(false);
     }
   };
-
   return (
     <>
       <header className=" py-8 text-center bg-white border-b-4">
-        <h1 className="text-4xl">AL ZEHRA PERFUMES</h1>
+        <h1 className="text-4xl">GM FOODZ</h1>
       </header>
       <main className="w-full bg-[#F9FAFB] py-10 flex md:flex-row flex-col-reverse">
         <section className="md:w-1/2 px-8 w-full">
           <h3 className="text-xl text-left my-9">Contact information</h3>
-          <form
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <div className="border-b pb-8 gap-4 flex md:flex-row flex-col">
               <InputField
                 inputAutoComplete={"email"}
@@ -358,31 +356,31 @@ const CheckoutPage = () => {
                 {paymentMethods.map((method, i) => {
                   return (
                     <div
-                      className={`lg:w-[48%] w-full transition-all duration-300 rounded-xl text-left gap-4 select-none  px-3 py-5 relative border-2 cursor-pointer flex items-center ${
-                        method.identifier == paymentMethod &&
+                      className={`lg:w-[48%] w-full transition-all duration-300 rounded-xl text-left gap-4 select-none px-3 py-5 relative border-2 cursor-pointer flex items-center ${
+                        method.identifier === paymentMethod &&
                         "border-brandOrange"
                       } justify-start`}
-                      key={i}
-                      onClick={(e) => {
+                      key={method.identifier}
+                      onClick={() => {
                         setPaymentMethod(method.identifier);
                       }}
                     >
-                      <img src={method?.icon} className="h-8" alt="" />
+                      <img src={method?.icon || "/placeholder.svg"} className="h-8" alt={method.name} />
                       <div>
                         <h3>{method.name}</h3>
                         <div
                           className="text-sm text-gray-500"
                           dangerouslySetInnerHTML={{ __html: method.context }}
-                        ></div>
+                        />
                       </div>
 
-                      <div
-                        className={`bg-brandOrange w-fit  p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2 ${
-                          paymentMethod == method.identifier ? "flex" : "hidden"
-                        }`}
-                      >
-                        <IoCheckmarkSharp className="text-white" />
-                      </div>
+                      {paymentMethod === method.identifier && (
+                        <div
+                          className="bg-brandOrange w-fit p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2"
+                        >
+                          <IoCheckmarkSharp className="text-white" />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -414,7 +412,7 @@ const CheckoutPage = () => {
             >
               {products.length} Items{" "}
               <div
-                className={`"flex md:hidden  ${
+                className={`flex ${
                   isSummaryExpanded ? "rotate-180" : "rotate-0"
                 }`}
               >
@@ -437,140 +435,115 @@ const CheckoutPage = () => {
             </h3>
           </div>
 
+          {isSummaryExpanded && window.innerWidth >= 400 && (
+  <div>
+    <div className="products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4">
+      {productsLoading ? (
+        <div className="flex text-left gap-4 md:w-1/2 w-full">
           <div>
-            <div
-              className={`products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4 ${
-                isSummaryExpanded ? "flex " : "hidden"
-              }`}
-            >
-              {productsLoading ? (
-                <div className="flex text-left  gap-4 md:w-1/2 w-full">
-                  <div>
-                    <img className="w-[7rem] skeleton-loading aspect-square rounded" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="skeleton-loading">Best Perfumes</h3>
-                    <h4 className="text-gray-600 skeleton-loading w-fit">
-                      Rs. 1500
-                    </h4>
-                    <h5 className="text-gray-400 skeleton-loading w-fit">
-                      x 2
-                    </h5>
-                  </div>
-                </div>
-              ) : (
-                products.map((product, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="flex text-left  gap-4 md:w-1/2 w-full"
-                    >
-                      <div>
-                        <img
-                          src={product.product.primaryImgThumbnails[0].url}
-                          className="w-[7rem] skeleton-loading aspect-square rounded"
-                          alt={product.product.title}
-                        />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <h3>{product.product.title}</h3>
-                        <h4 className="text-gray-600">
-                          Rs. {product.selectedVariant.price}
-                        </h4>
-                        <h5 className="text-gray-400">x {product.quantity}</h5>
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-            <div
-              className={`py-8 md:flex flex-col gap-4 ${
-                isSummaryExpanded ? "flex " : "hidden"
-              }`}
-            >
-              <div>
-                <div>
-                  <div className="flex items-center justify-between ">
-                    <p className="font-medium text-md leading-8 text-gray-800">
-                      Sub Total
-                    </p>
-                    <p
-                      className={`font-semibold text-md leading-8 text-red-800 ${
-                        productsLoading ? "skeleton-loading" : ""
-                      }`}
-                    >
-                      Rs. {subTotal}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between ">
-                    <p className="font-medium text-md leading-8 text-gray-800">
-                      Shipping
-                    </p>
-                    <p
-                      className={`font-semibold text-md leading-8 text-red-800 ${
-                        productsLoading ? "skeleton-loading" : ""
-                      }`}
-                    >
-                      {shippingFees == 0 ? "FREE" : `Rs. ${shippingFees}`}
-                    </p>
-                  </div>
-                </div>
-                {discountValue ? (
-                  <div>
-                    <div className="flex items-center justify-between ">
-                      <p className="font-medium text-md leading-8 text-gray-800">
-                        Coupon Discount
-                      </p>
-                      <p className="font-semibold text-md leading-8 text-red-800">
-                        - Rs. {discountValue}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div>
-                <div className="flex items-center justify-between ">
-                  <p className="font-medium text-xl leading-8 text-gray-800">
-                    Total
-                  </p>
-                  <p
-                    className={`font-semibold text-2xl leading-8 text-red-800 ${
-                      productsLoading ? "skeleton-loading" : ""
-                    }`}
-                  >
-                    Rs.{total}
-                  </p>
-                </div>
-
-                {/* 
-                   {discountValue > 0 && <div className="flex items-center justify-between ">
-                      <p className="font-medium text-md leading-8 text-gray-800">
-                        Coupon Discount:
-                      </p>
-                      <p className="font-semibold text-md leading-8 text-red-800">
-                          - Rs. discountValue
-                      </p>
-                    </div>} */}
-              </div>
-            </div>
-            <div
-              className={`py-8 md:block w-full ${
-                isSummaryExpanded ? "flex " : "hidden"
-              }`}
-            >
-              <PromoCodeForm
-                productTags={allProductTags}
-                discountValueReturner={getDiscountValue}
-                discountTypeReturner={setDiscountType}
-                coupon={coupon !== "none" && coupon}
+            <div className="w-[7rem] skeleton-loading aspect-square rounded" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="skeleton-loading">Best Perfumes</h3>
+            <h4 className="text-gray-600 skeleton-loading w-fit">
+              Rs. 1500
+            </h4>
+            <h5 className="text-gray-400 skeleton-loading w-fit">
+              x 2
+            </h5>
+          </div>
+        </div>
+      ) : (
+        products.map((product, i) => (
+          <div
+            key={`product-${product.productId || i}`}
+            className="flex text-left gap-4 md:w-1/2 w-full"
+          >
+            <div>
+              <img
+                src={product.product.primaryImgThumbnails[0].url || "/placeholder.svg"}
+                className="w-[7rem] aspect-square rounded"
+                alt={product.product.title}
               />
             </div>
+            <div className="flex flex-col gap-2">
+              <h3>{product.product.title}</h3>
+              <h4 className="text-gray-600">
+                Rs. {product.selectedVariant.price}
+              </h4>
+              <h5 className="text-gray-400">x {product.quantity}</h5>
+            </div>
           </div>
+        ))
+      )}
+    </div>
+    <div className="py-8 flex flex-col gap-4">
+      <div>
+        <div className="flex items-center justify-between">
+          <p className="font-medium text-md leading-8 text-gray-800">
+            Sub Total
+          </p>
+          <p
+            className={`font-semibold text-md leading-8 text-red-800 ${
+              productsLoading ? "skeleton-loading" : ""
+            }`}
+          >
+            Rs. {subTotal}
+          </p>
+        </div>
+      </div>
+      <div>
+        <div className="flex items-center justify-between">
+          <p className="font-medium text-md leading-8 text-gray-800">
+            Shipping
+          </p>
+          <p
+            className={`font-semibold text-md leading-8 text-red-800 ${
+              productsLoading ? "skeleton-loading" : ""
+            }`}
+          >
+            {shippingFees === 0 ? "FREE" : `Rs. ${shippingFees}`}
+          </p>
+        </div>
+      </div>
+      {discountValue > 0 && (
+        <div>
+          <div className="flex items-center justify-between">
+            <p className="font-medium text-md leading-8 text-gray-800">
+              Coupon Discount
+            </p>
+            <p className="font-semibold text-md leading-8 text-red-800">
+              - Rs. {discountValue}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+    <div>
+      <div className="flex items-center justify-between">
+        <p className="font-medium text-xl leading-8 text-gray-800">
+          Total
+        </p>
+        <p
+          className={`font-semibold text-2xl leading-8 text-red-800 ${
+            productsLoading ? "skeleton-loading" : ""
+          }`}
+        >
+          Rs. {total}
+        </p>
+      </div>
+    </div>
+    <div className="py-8 w-full">
+      <PromoCodeForm
+        productTags={allProductTags}
+        discountValueReturner={getDiscountValue}
+        discountTypeReturner={setDiscountType}
+        coupon={coupon !== "none" && coupon}
+      />
+    </div>
+  </div>
+)}
+
         </section>
       </main>
     </>

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const productDoc = await getDoc(doc(db, "Products", params.productId));
   const productData = { ...productDoc.data(), id: productDoc.id };
 
-  const title = `${productData.title} | Best Selling Fragrance `;
+  const title = `${productData.title} | Best Home made achar `;
   const description = productData.description;
 
   return {
@@ -46,10 +46,10 @@ export default async function ProductsPage({ params }) {
         {<HtmlRenderer rawHtml={productData.description} />}
       </div>
 
-      <div className="bg-yellow-600 w-full overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
+      <div className="bg-yellow-900 w-full overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
         <Image
           className="opacity-50 w-full object-cover h-full absolute inset-0 z-[1]"
-          src={"/aachar-banner.jpg"} // Change to an aachar-related image
+          src={"/pickle-bottle.jpg"} // Change to an aachar-related image
           alt="Homemade Aachar"
           width={2144}
           height={1072}
@@ -62,6 +62,8 @@ export default async function ProductsPage({ params }) {
           finest ingredients and traditional recipes.
         </p>
       </div>
+
+      <TestimonialSlider bgColor="yellow-600" textColor="black" />
 
       {/* Section: Why Our Aachar? */}
       <div className="flex justify-center md:flex-row flex-col-reverse my-12">
@@ -77,7 +79,7 @@ export default async function ProductsPage({ params }) {
         </div>
         <div className="md:w-1/2 w-screen flex justify-center items-center">
           <Image
-            src={"/homemade-aachar.jpg"} // Change to an aachar-related image
+            src={"/home made achar.jpg"} // Change to an aachar-related image
             className="md:w-[80%] w-[90%] rounded-lg"
             alt="Homemade Aachar"
             width={640}
@@ -91,7 +93,7 @@ export default async function ProductsPage({ params }) {
       {/* Section: Quality Ingredients */}
       <div className="flex w-[98%] justify-center py-9 flex-wrap md:px-4">
         <Image
-          src={"/organic-aachar.jpg"} // Change to an aachar-related image
+          src={"/chutney.jpg"} // Change to an aachar-related image
           className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
           width={1280}
           height={828}
@@ -108,28 +110,9 @@ export default async function ProductsPage({ params }) {
         </div>
       </div>
 
-      {/* Section: Perfect with Every Meal */}
-      <div className="flex w-[98%] justify-center py-9 flex-wrap">
-        <div className="md:w-1/2 w-full flex flex-col md:items-end p-10 gap-8 justify-center md:px-4">
-          <h1 className="md:text-4xl text-left text-3xl font-bold text-brandRed md:w-[80%] w-full">
-            The Perfect Companion for Every Meal
-          </h1>
-          <p className="text-left md:w-[80%]">
-            Add a spicy and tangy kick to your meals with our aachars. Whether
-            with parathas, daal chawal, or snacks, it's the perfect sidekick for
-            your cravings.
-          </p>
-        </div>
-        <Image
-          width={1280}
-          height={828}
-          src={"/aachar-meal.jpg"} // Change to an aachar-related image
-          className="md:w-1/2 object-cover rounded-lg w-[90%] aspect-video"
-          alt="Aachar with Meal"
-        />
-      </div>
+      
 
-      <TestimonialSlider bgColor="yellow-600" textColor="black" />
+
 
       <ProductSuggestions
         heading="You might also like:"

@@ -6,7 +6,7 @@ const ProductCardGroup = ({
   groupHeading = null,
   loading,
   link = null,
-  style="short"
+  style = "short",
 }) => {
   const productArray =
     products && products.length > 0
@@ -53,13 +53,16 @@ const ProductCardGroup = ({
         )}
 
         {link && (
-          <Link href={`${link}`} className="normal-brand-link font-bold" >
+          <Link href={`${link}`} className="normal-brand-link font-bold">
             View All
           </Link>
         )}
       </div>
-      <div className={`w-full grid lg:grid-cols-4 gap-3 ${style === "short" ? "grid-cols-2" : "grid-cols-1"}`}>
-
+      <div
+        className={`w-full grid lg:grid-cols-4 gap-3 ${
+          style === "short" ? "grid-cols-2" : "grid-cols-1"
+        }`}
+      >
         {productArray.map((product) => (
           <ProductCard
             onClick={() => {
@@ -71,7 +74,8 @@ const ProductCardGroup = ({
             title={product.title}
             image1={product.primaryImg}
             link={`/product/${product.id}`}
-            comparedPrice={product.comparedPrice}
+            comparePrice={product.comparePrice}
+            productData={product}
           />
         ))}
       </div>

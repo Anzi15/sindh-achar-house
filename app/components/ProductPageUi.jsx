@@ -57,6 +57,9 @@ const ProductPageUi = ({ parsedProduct }) => {
     }
   };
 
+  const hasDiscount =
+    product?.comparePrice && !isNaN(product?.comparePrice) ;
+
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
   };
@@ -130,13 +133,20 @@ const ProductPageUi = ({ parsedProduct }) => {
     <div className="details-section flex flex-col pt-6 text-left gap-3 w-full md:w-1/2 px-6">
       <div className="product-product flex flex-col md:gap-6 gap-3 md:pb-8 py-4">
         <div className="flex flex-col gap-4">
-          {product.subTitle && (
+          {product?.subTitle && (
             <p className={`capitalize`}>{product.subTitle}</p>
           )}
           <h1
-            className={`product-title text-3xl tracking-wide font-bold text-left uppercase`}
+            className={`product-title text-3xl tracking-wide font-bold  flex flex-col text-left uppercase`}
             id="product-title-elem"
           >
+            {hasDiscount && (
+          <>
+            <span className="rounded-full bg-red-600 px-2 w-fit text-center text-sm font-medium text-white">
+              SALE
+            </span>
+          </>
+        )}
             {product.title}
           </h1>
         </div>
@@ -156,7 +166,7 @@ const ProductPageUi = ({ parsedProduct }) => {
             <div>
               <div>
                 Rs.
-                <s className="line-through">{selectedVariant.comparePrice}</s>
+                <s className="line-through">{selectedVariant.comparePrice ? selectedVariant.comparePrice : product.comparePrice}</s>
               </div>
             </div>
           )}
@@ -224,13 +234,14 @@ const ProductPageUi = ({ parsedProduct }) => {
         )}
       </div>
       <p className="font-bold">Quantity</p>
-      <form className="max-w-xs md:p-2 flex justify-left items-start">
+      <div className="flex md:p-2 gap-3">
+      <form className="max-w-xs  flex justify-left items-start">
         <div className="relative flex items-start max-w-[8rem]">
           <button
             type="button"
             id="decrement-button"
             product-input-counter-decrement="quantity-input"
-            className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+            className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-14 focus:ring-gray-100 focus:ring-2 focus:outline-none"
             onClick={() => {
               updateQuantity(1, "decrement");
             }}
@@ -256,7 +267,7 @@ const ProductPageUi = ({ parsedProduct }) => {
             id="quantity-input"
             product-input-counter
             aria-describedby="helper-text-explanation"
-            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
+            className="bg-gray-50 border-x-0 border-gray-300 h-14 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
             value={quantity}
             required
             onInput={(e) => {
@@ -274,7 +285,7 @@ const ProductPageUi = ({ parsedProduct }) => {
             type="button"
             id="increment-button"
             product-input-counter-increment="quantity-input"
-            className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none"
+            className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-14 focus:ring-gray-100  focus:ring-2 focus:outline-none"
           >
             <svg
               className="w-3 h-3 text-gray-900 dark:text-white"
@@ -294,16 +305,17 @@ const ProductPageUi = ({ parsedProduct }) => {
           </button>
         </div>
       </form>
-      <div className="cta-con pt-8">
-        <div className="two_btn_con flex gap-4 items-center mb-4 md:flex-row flex-row-reverse md:w-[80%] ">
           <Button
-            className="text-nowrap flex items-center gap-3 py-4 px-6"
+            className="text-nowrap flex items-center gap-3 py-4 px-6 hover:bg-brandRed hover:outline-0 transition-all   hover:text-white"  
             onClick={addToCart}
             variant="outlined"
           >
             <IoMdCart className="text-xl" />
             <p className="hidden md:flex">Add To Cart</p>
           </Button>
+      </div>
+      <div className="cta-con pt-8">
+        <div className="two_btn_con flex gap-4 items-center mb-4 md:flex-row flex-row-reverse md:w-[80%] ">
           <Link
             href={`/checkout?source=${
               product.id
@@ -314,7 +326,7 @@ const ProductPageUi = ({ parsedProduct }) => {
             )}`}
             className="w-full"
           >
-            <Button className="w-full py-3.5 text-lg">Buy now</Button>
+            <Button className="w-full py-3.5 text-lg hover:bg-brandRed transition-all duration-300">Buy now</Button>
           </Link>
 
           <div className="md:hidden w-full px-2 py-2  text-white fixed bottom-0 left-0 right-0 z-50 m-auto">
@@ -373,7 +385,7 @@ const ProductPageUi = ({ parsedProduct }) => {
               d="M1 5.917L5.724 10.5 15 1.5"
             />
           </svg>
-          <span>Long lasting</span>
+          <span>Rich & Authentic Flavor</span>
         </li>
         <li className="flex items-center space-x-3 rtl:space-x-reverse">
           <svg
@@ -391,7 +403,7 @@ const ProductPageUi = ({ parsedProduct }) => {
               d="M1 5.917L5.724 10.5 15 1.5"
             />
           </svg>
-          <span>Elegant fragrance</span>
+          <span>Perfect for Every Meal</span>
         </li>
         <li className="flex items-center space-x-3 rtl:space-x-reverse">
           <svg
@@ -409,7 +421,7 @@ const ProductPageUi = ({ parsedProduct }) => {
               d="M1 5.917L5.724 10.5 15 1.5"
             />
           </svg>
-          <span>Perfect for all occasions</span>
+          <span>Premium Packaging</span>
         </li>
         <li className="flex items-center space-x-3 rtl:space-x-reverse">
           <svg
@@ -427,7 +439,7 @@ const ProductPageUi = ({ parsedProduct }) => {
               d="M1 5.917L5.724 10.5 15 1.5"
             />
           </svg>
-          <span>Attractive packaging</span>
+          <span>Made with High-Quality Ingredients </span>
         </li>
         <li className="flex items-center space-x-3 rtl:space-x-reverse">
           <svg
