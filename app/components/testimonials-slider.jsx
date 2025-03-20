@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import AnimatedDiv from "./AnimatedDiv";
 
 export default function TestimonialSlider({ testimonials = [
   {
@@ -59,6 +60,7 @@ export default function TestimonialSlider({ testimonials = [
   return (
     <>
       <section className="w-full max-w-[98vw] py-4 cursor-grab ">
+
         <div className="mx-auto lg:max-w-6xl px-3">
           <Carousel
             opts={{
@@ -73,7 +75,9 @@ export default function TestimonialSlider({ testimonials = [
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
+                
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <AnimatedDiv>
                   <div className="flex flex-col px-4 py-5 sm:p-6">
                     <q className="flex-1 text-gray-600 dark:text-gray-300">
                       {testimonial.quote}
@@ -87,7 +91,7 @@ export default function TestimonialSlider({ testimonials = [
                           alt={testimonial.name}
                           src={testimonial.imgSrc}
                           loading="lazy"
-                        />
+                          />
                       </span>
                       <div>
                         <p className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -96,6 +100,7 @@ export default function TestimonialSlider({ testimonials = [
                       </div>
                     </div>
                   </div>
+                          </AnimatedDiv>
                 </CarouselItem>
               ))}
             </CarouselContent>

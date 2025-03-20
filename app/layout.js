@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
             </>
           )}
           {children}
-          <FloatingWhatsApp {/*  Props  */} />
+          <FloatingWhatsApp phoneNumber='923053820015' accountName='GM FOODZ' statusMessage='Online' chatMessage="Asalam o alekums sir, kese hein ap?" darkMode={true} avatar="/logo.svg" />
           {!hideHeaderFooter && (
             <>
               <Footer />

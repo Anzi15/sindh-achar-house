@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import InputField from "../components/InputField";
@@ -77,6 +77,7 @@ const CheckoutPage = () => {
   const [productsLoading, setProductsLoading] = useState(true);
   const [calculationsLoading, setCalculationsLoading] = useState(true);
   const [isSubmissionLoading, setIsSubmissionLoading] = useState(false);
+  const orderConfirmationRef = useRef(null)
   const [allProductTags, setAllProductTags] = useState([]);
   const [discountValue, setDiscountValue] = useState(0);
   const [discountType, setDiscountType] = useState(null);
@@ -247,22 +248,30 @@ const CheckoutPage = () => {
         }
       }
       if (source == "cart") localStorage.removeItem("cart-items");
-      toast.success("Your order has been placed");
+      // toast.success("Your order has been placed");
       
       // Format the date from the Timestamp
-      const orderDate = orderData.createdAt.toDate().toLocaleDateString();
+      // const orderDate = orderData.createdAt.toDate().toLocaleDateString();
       
       // Construct the URL with all relevant order parameters
-      const confirmationUrl = `/order/confirmed?` + 
-        `orderId=${orderData.orderId}` +
-        `&paymentMethod=${orderData.payment.method}` +
-        `&name=${encodeURIComponent(orderData.customer.firstName + ' ' + orderData.customer.lastName)}` +
-        `&email=${encodeURIComponent(orderData.customer.email)}` +
-        `&date=${encodeURIComponent(orderDate)}` +
-        `&total=${orderData.grandTotal}` +
-        `&items=${orderData.items.length}`;
-      
-      router.push(confirmationUrl);
+  toast.success("Your order has been placed");
+
+    // Construct the URL
+    const orderDate = orderData.createdAt.toDate().toLocaleDateString();
+    const confirmationUrl = `/order/confirmed?` + 
+      `orderId=${orderData.orderId}` +
+      `&paymentMethod=${orderData.payment.method}` +
+      `&name=${encodeURIComponent(orderData.customer.firstName + ' ' + orderData.customer.lastName)}` +
+      `&email=${encodeURIComponent(orderData.customer.email)}` +
+      `&date=${encodeURIComponent(orderDate)}` +
+      `&total=${orderData.grandTotal}` +
+      `&items=${orderData.items.length}`;
+
+    // Set the href of the hidden link
+    orderConfirmationRef.current.href = confirmationUrl;
+    
+    // Simulate a click
+    orderConfirmationRef.current.click();
     } catch (error) {
       console.log("there a error");
       console.log(error);
@@ -277,6 +286,7 @@ const CheckoutPage = () => {
       </header>
       <main className="w-full bg-[#F9FAFB] py-10 flex md:flex-row flex-col-reverse">
         <section className="md:w-1/2 px-8 w-full">
+        <a ref={orderConfirmationRef} style={{ display: "none" }}>Redirecting...</a>
           <h3 className="text-xl text-left my-9">Contact information</h3>
           <form onSubmit={handleSubmit}>
             <div className="border-b pb-8 gap-4 flex md:flex-row flex-col">

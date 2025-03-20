@@ -1,3 +1,4 @@
+import AnimatedDiv from "./AnimatedDiv";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 
@@ -64,19 +65,21 @@ const ProductCardGroup = ({
         }`}
       >
         {productArray.map((product) => (
-          <ProductCard
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
-            key={product.id}
-            loading={loading}
-            price={product.price}
-            title={product.title}
-            image1={product.primaryImg}
-            link={`/product/${product.id}`}
-            comparePrice={product.comparePrice}
-            productData={product}
-          />
+          <AnimatedDiv>
+            <ProductCard
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+              key={product.id}
+              loading={loading}
+              price={product.price}
+              title={product.title}
+              image1={product.primaryImg}
+              link={`/product/${product.id}`}
+              comparePrice={product.comparePrice}
+              productData={product}
+            />
+          </AnimatedDiv>
         ))}
       </div>
     </div>

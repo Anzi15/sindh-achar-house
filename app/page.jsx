@@ -7,6 +7,7 @@ import CollectionCardGroup from "./components/CollectionCardGroup";
 import CustomerBenefits from "./components/CustomerBenefits";
 import TestimonialSlider from "./components/testimonials-slider";
 import AutoCarousel from "./components/CollectionCarousel";
+import AnimatedDiv from "./components/AnimatedDiv";
 
 export async function generateMetadata() {
   const title = `Best Achars in Pakistan | GM FOODZ Achar`;
@@ -124,6 +125,7 @@ export default async function Home() {
 
   return (
     <main>
+
       <div className="w-screen flex items-center justify-center">
         <Image
           src="/cover.png"
@@ -136,6 +138,7 @@ export default async function Home() {
         />
       </div>
 
+
       <ProductCardGroup
         products={topProducts}
         groupHeading={"Top Products"}
@@ -146,10 +149,15 @@ export default async function Home() {
 
       <section className="w-full flex flex-col md:flex-row items-center">
   <div className="md:w-1/2 text-center md:text-left space-y-4  md:px-12 px-4">
+  <AnimatedDiv>
     <h2 className="text-2xl font-bold">Pakistan's Leading Pickles & Condiments Brand</h2>
+
+  </AnimatedDiv>
+  <AnimatedDiv>
     <p className="text-lg text-gray-700">
       Experience the rich, authentic flavors of Pakistan with our premium pickles and condiments—crafted to perfection for every meal.
     </p>
+</AnimatedDiv>
   </div>
   <div className="md:w-1/2 flex justify-center">
     <Image 
@@ -167,7 +175,7 @@ export default async function Home() {
 
     <div className="relative bg-black text-white p-6 rounded-lg">
       <div className="flex md:flex-row flex-col justify-center items-center gap-4">
-        {/* Left Side - Image */}
+        <AnimatedDiv>
         <div className="relative md:w-1/2">
           <Image
             src="https://i.ibb.co/1G319NN8/59926c85448ea.png" // Change to actual image path
@@ -177,8 +185,11 @@ export default async function Home() {
             height={720}
           />
         </div>
+        </AnimatedDiv>
 
         {/* Right Side - Text & Buttons */}
+
+        <AnimatedDiv>
         <div className="text-center md:text-left items-center flex flex-col justify-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             DON'T KNOW WHERE TO START?
@@ -192,9 +203,9 @@ export default async function Home() {
             </Link>
           </div>
         </div>
+        </AnimatedDiv>
       </div>
 
-      {/* Floating Gift Icon */}
     </div>
   
 
@@ -202,18 +213,29 @@ export default async function Home() {
       <TestimonialSlider testimonials={testimonials} />
 
       <div className="max-w-3xl mx-auto p-6 space-y-6">
+        <AnimatedDiv>
       <h2 className="text-3xl font-bold text-gray-800">100+ Best Achars & Condiments in Pakistan by GoFoodz</h2>
-      
+        </AnimatedDiv>
+
+        <AnimatedDiv>
       <p className="text-gray-700 text-lg">
       GoFoodz is your go-to online store for the finest selection of achars, chutneys, and condiments, crafted with authentic flavors and high-quality ingredients. We take pride in offering traditional, homemade-style pickles that bring the perfect balance of spice, tang, and aroma to your meals.
       </p>
+        </AnimatedDiv>
+
+        <AnimatedDiv>
       <p className="text-gray-700 text-lg">
       Our collection includes a diverse range of achars, sauces, and spreads, ensuring that every taste preference is catered to. Whether you're looking for a fiery kick to your dishes or a rich, flavorful accompaniment, GoFoodz has something for everyone. From classic mango achar to exotic mixed pickles, our products are made using traditional recipes, preserving the rich heritage of Pakistani flavors.
       </p>
 
+        </AnimatedDiv>
+      
+
+<AnimatedDiv>
       <p className="text-gray-700 text-lg">
       Branded achars and condiments have become increasingly expensive due to inflation and import costs, but at GoFoodz, we prioritize affordability without compromising on quality. Our secret lies in sourcing the best local ingredients and optimizing our processes to deliver fresh, preservative-free products at unbeatable prices.
       </p>
+</AnimatedDiv>
     </div>
     </main>
   );
