@@ -19,6 +19,7 @@ import CountdownTimer, {
 import { Button } from "@material-tailwind/react";
 import { IoMdCart } from "react-icons/io";
 import { toast } from "react-toastify";
+import AnimatedDiv from "./AnimatedDiv";
 
 const ProductPageUi = ({ parsedProduct }) => {
   const product = JSON.parse(parsedProduct);
@@ -133,15 +134,21 @@ const ProductPageUi = ({ parsedProduct }) => {
     <div className="details-section flex flex-col pt-6 text-left gap-3 w-full md:w-1/2 px-6">
       <div className="product-product flex flex-col md:gap-6 gap-3 md:pb-8 py-4">
         <div className="flex flex-col gap-4">
+          <AnimatedDiv>
+
           {product?.subTitle && (
             <p className={`capitalize`}>{product.subTitle}</p>
           )}
+          </AnimatedDiv>
+
+          <AnimatedDiv>
+            
           <h1
             className={`product-title text-3xl tracking-wide font-bold  flex flex-col text-left uppercase`}
             id="product-title-elem"
-          >
+            >
             {hasDiscount && (
-          <>
+              <>
             <span className="rounded-full bg-red-600 px-2 w-fit text-center text-sm font-medium text-white">
               SALE
             </span>
@@ -149,31 +156,45 @@ const ProductPageUi = ({ parsedProduct }) => {
         )}
             {product.title}
           </h1>
+        </AnimatedDiv>
         </div>
 
         <div className="flex items-end gap-3">
           <div className="flex gap-4 md:p-0 pt-3">
+          <AnimatedDiv>
+
+
             <h3
               className={`product-price text-2xl text-brandOrange font-medium tracking-wide `}
               id="product-price-elem"
-            >
+              >
               Rs.
               {selectedVariant.price * quantity}
             </h3>
+              </AnimatedDiv>
           </div>
 
           {shouldShowComparePrice && (
             <div>
+          <AnimatedDiv>
+            
+
               <div>
+
                 Rs.
                 <s className="line-through">{selectedVariant.comparePrice ? selectedVariant.comparePrice : product.comparePrice}</s>
               </div>
+          </AnimatedDiv>
             </div>
           )}
         </div>
-        {isExpiryDateValid && (
+        {/* {isExpiryDateValid && (
           <CountdownTimer expiryTimestamp={product.discountExpiryDate} />
-        )}
+        )} */}
+
+<AnimatedDiv>
+
+        
         {product.variants && product.variants.length > 1 && (
           <div>
             <p className="font-bold">Variants</p>
@@ -232,7 +253,9 @@ const ProductPageUi = ({ parsedProduct }) => {
             </div>
           </div>
         )}
+</AnimatedDiv>
       </div>
+      <AnimatedDiv>
       <p className="font-bold">Quantity</p>
       <div className="flex md:p-2 gap-3">
       <form className="max-w-xs  flex justify-left items-start">
@@ -314,6 +337,11 @@ const ProductPageUi = ({ parsedProduct }) => {
             <p className="hidden md:flex">Add To Cart</p>
           </Button>
       </div>
+      </AnimatedDiv>
+      
+
+      <AnimatedDiv>
+
       <div className="cta-con pt-8">
         <div className="two_btn_con flex gap-4 items-center mb-4 md:flex-row flex-row-reverse md:w-[80%] ">
           <Link
@@ -368,98 +396,40 @@ const ProductPageUi = ({ parsedProduct }) => {
         </div>
       </div>
 
-      <ul className="space-y-4 text-left text-gray-500 dark:text-gray-400 my-8">
-        <li className="flex items-center space-x-3 rtl:space-x-reverse">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 12"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5.917L5.724 10.5 15 1.5"
-            />
-          </svg>
-          <span>Rich & Authentic Flavor</span>
-        </li>
-        <li className="flex items-center space-x-3 rtl:space-x-reverse">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 12"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5.917L5.724 10.5 15 1.5"
-            />
-          </svg>
-          <span>Perfect for Every Meal</span>
-        </li>
-        <li className="flex items-center space-x-3 rtl:space-x-reverse">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 12"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5.917L5.724 10.5 15 1.5"
-            />
-          </svg>
-          <span>Premium Packaging</span>
-        </li>
-        <li className="flex items-center space-x-3 rtl:space-x-reverse">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 12"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5.917L5.724 10.5 15 1.5"
-            />
-          </svg>
-          <span>Made with High-Quality Ingredients </span>
-        </li>
-        <li className="flex items-center space-x-3 rtl:space-x-reverse">
-          <svg
-            className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 16 12"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5.917L5.724 10.5 15 1.5"
-            />
-          </svg>
-          <span>High-quality ingredients</span>
-        </li>
-      </ul>
+
+      </AnimatedDiv>
+
+<ul className="space-y-4 text-left text-gray-500 dark:text-gray-400 my-8">
+  {[
+    "Rich & Authentic Flavor",
+    "Perfect for Every Meal",
+    "Premium Packaging",
+    "Made with High-Quality Ingredients",
+    "High-quality ingredients",
+  ].map((feature, index) => (
+    <AnimatedDiv key={index}>
+      <li className="flex items-center space-x-3 rtl:space-x-reverse">
+        <svg
+          className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 16 12"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M1 5.917L5.724 10.5 15 1.5"
+          />
+        </svg>
+        <span>{feature}</span>
+      </li>
+    </AnimatedDiv>
+  ))}
+</ul>
+
     </div>
   );
 };

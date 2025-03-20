@@ -47,7 +47,7 @@ export default function Header({children, headerText}) {
   return (
     <>
     {children}
-    <a href="/consultation">
+    <a href="/products">
 
     <div className="w-full bg-brandOrange p-2 text-center text-white group transition-all hover:text-[1.05rem] text-md flex gap-2 hover:gap-4 items-center justify-center py-2">
       {headerText}

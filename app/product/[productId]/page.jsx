@@ -112,8 +112,6 @@ export default async function ProductsPage({ params }) {
 
       
 
-
-
       <ProductSuggestions
         heading="You might also like:"
         dontUse={productData.title}
