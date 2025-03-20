@@ -17,9 +17,9 @@ export async function generateMetadata({ params }) {
   const collectionName = params.collectionName.toUpperCase();
   const productCount = products.length;
   const title = productCount > 0
-    ? `${collectionName} Perfumes | AL ZEHRA PERFUMES | Best fragrances in pakistan available!`
+    ? `${collectionName} Achars | GM FOODZ | Best Achars in pakistan available!`
     : "No such products available";
-  const description = `Buy the best ${collectionName} perfumes and attars in pakistan. By AL ZEHRA PERFUMES, the name of quality.`;
+  const description = `Buy the best ${collectionName} achars and murabas in pakistan. By GM FOODZ, the name of quality.`;
 
   return {
     title,

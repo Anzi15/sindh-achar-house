@@ -60,9 +60,9 @@ const Footer = () => {
           <p className="font-semibold text-white text-left">Top Collections</p>
   
           <div className="flex flex-col items-start mt-5 space-y-2">
-            <Link href={"/collections/men"}>
+            <Link href={"/collections/achar"}>
             <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
-              Men
+            Achars
             </p>
             </Link>
 
@@ -72,13 +72,18 @@ const Footer = () => {
             </p>
             </Link>
 
-            <Link href={"/collections/esatern"}></Link>
+            <Link href={"/collections/chutney"}>
+            
             <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
-              Eastern
+            Chutneys
             </p>
+            </Link>
+
+            <Link href={"/collection/murabba"}>
             <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
-              Western
+            Murabbas
             </p>
+            </Link>
           </div>
         </div>
       </div>

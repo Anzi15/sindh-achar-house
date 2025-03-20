@@ -123,7 +123,7 @@ const page = () => {
         <div className="md:w-1/2 w-[95%] text-center ">
           <Image
             src="https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/images%2Fchristin-hume-0MoF-Fe0w0A-unsplash.jpg?alt=media&token=4d45e9e5-608e-426b-9f4a-4e07cd284c4f"
-            alt="Perfume Quality Assurance"
+            alt=" ssurance"
             height={428}
             width={639}
             className="aspect-video rounded-lg"

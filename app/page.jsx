@@ -6,14 +6,15 @@ import ProductCardGroup from "./components/ProductCardGroup";
 import CollectionCardGroup from "./components/CollectionCardGroup";
 import CustomerBenefits from "./components/CustomerBenefits";
 import TestimonialSlider from "./components/testimonials-slider";
+import AutoCarousel from "./components/CollectionCarousel";
 
 export async function generateMetadata() {
-  const title = `Quality Fragrances in Pakistan | Al Zehra Perfumes`;
+  const title = `Best Achars in Pakistan | GM FOODZ Achar`;
 
   return {
     title,
     description:
-      "Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
+      "Looking for some delicious achar in Pakistan? Check out our top picks and reviews to the perfect taste that suits your taste buds!",
   };
 }
 
@@ -124,15 +125,15 @@ export default async function Home() {
   return (
     <main>
       <div className="w-screen flex items-center justify-center">
-            <Image
-              src="/cover.png"
-              alt="Website Cover"
-              className="aspect-video w-full skeleton-loading"
-              layout="responsive"
-              width={1280}
-              height={720}
-              priority
-            />
+        <Image
+          src="/cover.png"
+          alt="Website Cover"
+          className="aspect-video w-full skeleton-loading"
+          layout="responsive"
+          width={1280}
+          height={720}
+          priority
+        />
       </div>
 
       <ProductCardGroup
@@ -140,97 +141,80 @@ export default async function Home() {
         groupHeading={"Top Products"}
         link={"/products"}
       />
-      {/* <CollectionCardGroup
-        collectionsArray={[
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2FMen.png?alt=media&token=90b2211e-911e-4380-86b8-f385ea8d83e6",
-            name: "men",
-            slug: "men",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fwomen.png?alt=media&token=81a8552b-e4c4-4dc2-ab74-025dc5dd79a3",
-            name: "women",
-            slug: "women",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Feastern.png?alt=media&token=5d04aef8-eec9-47c9-a1dc-1b6a5b207f29",
-            name: "eastern",
-            slug: "eastern",
-          },
-          {
-            image:
-              "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fwestern.png?alt=media&token=a32f510e-56be-492a-9eb1-096307b3ac29",
-            name: "western",
-            slug: "western",
-          },
-        ]}
-      /> */}
 
-      {/* <section className="grid md:grid-cols-2 grid-cols-1 gap-8 p-8">
-        <Link
-          className="hover:scale-105 transition-all"
-          href={"/collection/tester"}
-        >
-          <Image
-            src="https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2F1.png?alt=media&token=da140821-3e2d-44fe-bf28-bb973014e2c1"
-            alt="Al Zehra By  | Perfume Testers | Pakistan"
-            height={360}
-            width={900}
-            className="rounded-lg"
-          />
-        </Link>
-        <Link
-          className="hover:scale-105 transition-all"
-          href={"/collection/attar"}
-        >
-          <Image
-            src="https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2F2.png?alt=media&token=d2b7ca20-05b0-4bdb-953d-d4611e19f30e"
-            alt="Al Zehra By GM  | Attar | Pakistan"
-            height={360}
-            width={900}
-            className="rounded-lg"
-          />
-        </Link>
-      </section>
+      <AutoCarousel />
 
-      <ProductCardGroup
-        products={scentfulSavings}
-        groupHeading={"Scentful Savings"}
-        link={"/products"}
-      />
+      <section className="w-full flex flex-col md:flex-row items-center">
+  <div className="md:w-1/2 text-center md:text-left space-y-4  md:px-12 px-4">
+    <h2 className="text-2xl font-bold">Pakistan's Leading Pickles & Condiments Brand</h2>
+    <p className="text-lg text-gray-700">
+      Experience the rich, authentic flavors of Pakistan with our premium pickles and condiments—crafted to perfection for every meal.
+    </p>
+  </div>
+  <div className="md:w-1/2 flex justify-center">
+    <Image 
+      src="/logo.svg" 
+      width={720} 
+      height={720} 
+      className="w-full max-w-sm" 
+      alt="Brand Logo" 
+    />
+  </div>
+</section>
 
-      <section className="w-screen md:p-8 p-4 ">
-        <div className="bg-black text-white rounded-3xl flex md:flex-row flex-col items-center justify-between gap-5">
-          <Image
-            src="https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/collections-images%2Fpexels-yuli-sv-58861876-7941434%20(1).jpg?alt=media&token=2afc4a1a-090e-4c30-9747-530edd90e4ce"
-            className="md:w-1/2 w-full aspect-square object-cover md:rounded-l-3xl rounded-t-2xl"
-            alt="FREE Perfume tester | Image | Al Zehra Perfumes | Pakitan"
-            height={960}
-            width={640}
-          />
-
-          <div className="md:w-1/2 flex flex-col justify-center ">
-            <h1 className="uppercase font-black text-white md:text-[60px] text-3xl md:text-left text-center leading-snug   ">
-              Can't figure out where to begin?
-            </h1>
-            <div className="md:w-1/2 pl-4 flex md:justify-start justify-center my-6">
-              <Link
-                className="bg-brandOrange text-white px-6 py-3 rounded-full hover:bg-red-800 transition-all duration-100 font-bold"
-                href="/collection/tester"
-              >
-                Try Our Samples
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       <CustomerBenefits />
 
+    <div className="relative bg-black text-white p-6 rounded-lg">
+      <div className="flex md:flex-row flex-col justify-center items-center gap-4">
+        {/* Left Side - Image */}
+        <div className="relative md:w-1/2">
+          <Image
+            src="https://i.ibb.co/1G319NN8/59926c85448ea.png" // Change to actual image path
+            alt="Man holding sample set"
+            className="w-full aspect-video object-cover rounded-lg"
+            width={720}
+            height={720}
+          />
+        </div>
+
+        {/* Right Side - Text & Buttons */}
+        <div className="text-center md:text-left items-center flex flex-col justify-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            DON'T KNOW WHERE TO START?
+          </h2>
+          <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-4">
+            <a href="https://wa.me/923053820015?text=AOA" className="bg-white text-black font-semibold px-6 py-3 rounded-full">
+             Talk to us
+            </a>
+            <Link href={"/product/mix-achar."} className="bg-white text-black font-semibold px-6 py-3 rounded-full">
+             Try Mix achar
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Gift Icon */}
+    </div>
+  
+
+
       <TestimonialSlider testimonials={testimonials} />
+
+      <div className="max-w-3xl mx-auto p-6 space-y-6">
+      <h2 className="text-3xl font-bold text-gray-800">100+ Best Achars & Condiments in Pakistan by GoFoodz</h2>
+      
+      <p className="text-gray-700 text-lg">
+      GoFoodz is your go-to online store for the finest selection of achars, chutneys, and condiments, crafted with authentic flavors and high-quality ingredients. We take pride in offering traditional, homemade-style pickles that bring the perfect balance of spice, tang, and aroma to your meals.
+      </p>
+      <p className="text-gray-700 text-lg">
+      Our collection includes a diverse range of achars, sauces, and spreads, ensuring that every taste preference is catered to. Whether you're looking for a fiery kick to your dishes or a rich, flavorful accompaniment, GoFoodz has something for everyone. From classic mango achar to exotic mixed pickles, our products are made using traditional recipes, preserving the rich heritage of Pakistani flavors.
+      </p>
+
+      <p className="text-gray-700 text-lg">
+      Branded achars and condiments have become increasingly expensive due to inflation and import costs, but at GoFoodz, we prioritize affordability without compromising on quality. Our secret lies in sourcing the best local ingredients and optimizing our processes to deliver fresh, preservative-free products at unbeatable prices.
+      </p>
+    </div>
     </main>
   );
 }

@@ -11,6 +11,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from './lib/firebase/firbaseConfig';
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -83,6 +84,7 @@ export default function RootLayout({ children }) {
             </>
           )}
           {children}
+          <FloatingWhatsApp {/*  Props  */} />
           {!hideHeaderFooter && (
             <>
               <Footer />
