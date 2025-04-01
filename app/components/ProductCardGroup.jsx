@@ -1,14 +1,10 @@
-import AnimatedDiv from "./AnimatedDiv";
-import ProductCard from "./ProductCard";
-import Link from "next/link";
+"use client"
 
-const ProductCardGroup = ({
-  products,
-  groupHeading = null,
-  loading,
-  link = null,
-  style = "short",
-}) => {
+import AnimatedDiv from "./AnimatedDiv"
+import ProductCard from "./ProductCard"
+import Link from "next/link"
+
+const ProductCardGroup = ({ products, groupHeading = null, loading, link = null, style = "short" }) => {
   const productArray =
     products && products.length > 0
       ? products
@@ -41,17 +37,16 @@ const ProductCardGroup = ({
             primaryImg:
               "https://firebasestorage.googleapis.com/v0/b/al-zehra.appspot.com/o/640px-HD_transparent_picture.png?alt=media&token=6b3789c8-da36-47ad-b36a-b2dfe62eb984",
           },
-        ];
+        ]
+
+  // Reverse the product array to display the second row first
+  const reversedProductArray = [...productArray].reverse()
 
   return (
     <div className="my-12 px-8 ">
       {/* Conditional rendering for group heading */}
       <div className="w-full flex justify-between">
-        {groupHeading && (
-          <h3 className="text-3xl uppercase text-left font-semibold max-w-fit">
-            {groupHeading}
-          </h3>
-        )}
+        {groupHeading && <h3 className="text-3xl uppercase text-left font-semibold max-w-fit">{groupHeading}</h3>}
 
         {link && (
           <Link href={`${link}`} className="normal-brand-link font-bold">
@@ -59,18 +54,13 @@ const ProductCardGroup = ({
           </Link>
         )}
       </div>
-      <div
-        className={`w-full grid lg:grid-cols-4 gap-3 ${
-          style === "short" ? "grid-cols-2" : "grid-cols-1"
-        }`}
-      >
-        {productArray.map((product) => (
-          <AnimatedDiv>
+      <div className={`w-full grid lg:grid-cols-4 gap-3 ${style === "short" ? "grid-cols-2" : "grid-cols-1"}`}>
+        {reversedProductArray.map((product) => (
+          <AnimatedDiv key={product.id}>
             <ProductCard
               onClick={() => {
-                window.scrollTo(0, 0);
+                window.scrollTo(0, 0)
               }}
-              key={product.id}
               loading={loading}
               price={product.price}
               title={product.title}
@@ -83,7 +73,8 @@ const ProductCardGroup = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCardGroup;
+export default ProductCardGroup
+

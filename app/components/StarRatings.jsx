@@ -1,15 +1,17 @@
 import { Star } from "lucide-react";
 
 const StarRating = ({ rating }) => {
-  const fullStars = Math.floor(rating); // Full stars
-  const halfStar = rating % 1 !== 0; // Half star check
+  if (rating < 0 || rating > 5 || isNaN(rating)) return null; // Ensure valid rating range (0 to 5)
+
+  const fullStars = Math.floor(rating); // Full stars count
+  const halfStar = rating % 1 !== 0; // Check for half star
   const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
 
   return (
     <div className="flex items-center">
       {/* Full stars */}
       {[...Array(fullStars)].map((_, i) => (
-        <Star key={i} className="text-yellow-900 w-5 h-5 fill-current" />
+        <Star key={`full-${i}`} className="text-yellow-900 w-5 h-5 fill-current" />
       ))}
 
       {/* Half Star - Two overlapping layers */}
@@ -25,7 +27,7 @@ const StarRating = ({ rating }) => {
 
       {/* Empty stars */}
       {[...Array(emptyStars)].map((_, i) => (
-        <Star key={i} className="text-yellow-900 w-5 h-5 stroke-current" />
+        <Star key={`empty-${i}`} className="text-yellow-900 w-5 h-5 stroke-current" />
       ))}
     </div>
   );

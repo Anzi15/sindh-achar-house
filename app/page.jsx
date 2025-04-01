@@ -1,4 +1,4 @@
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { db } from "./lib/firebase/firbaseConfig";
@@ -85,33 +85,17 @@ export default async function Home() {
 
   const topProductsQuery = query(
     collection(db, "Products"),
-    where("tags", "array-contains", "top-products"),
-    limit(4) // Apply the `where` clause within `query`
+    where("tags", "array-contains", "top-products"), // Apply the `where` clause
+    orderBy("topProductOrder","desc") // Order by `topProductOrder`
   );
+  
   const topProductsDocs = await getDocs(topProductsQuery);
   topProductsDocs.forEach((document) => {
     topProducts.push({ ...document.data(), id: document.id });
   });
+  
 
-  const bestSellerQuery = query(
-    collection(db, "Products"),
-    where("tags", "array-contains", "best-seller"),
-    limit(4) // Apply the `where` clause within `query`
-  );
-  const bestSellerDocs = await getDocs(bestSellerQuery);
-  bestSellerDocs.forEach((document) => {
-    bestSeller.push({ ...document.data(), id: document.id });
-  });
 
-  const newArrivalQuery = query(
-    collection(db, "Products"),
-    where("tags", "array-contains", "new-arrival"),
-    limit(4) // Apply the `where` clause within `query`
-  );
-  const newArrivalDocs = await getDocs(newArrivalQuery);
-  newArrivalDocs.forEach((document) => {
-    newArrival.push({ ...document.data(), id: document.id });
-  });
 
   const scentfulSavingsQuery = query(
     collection(db, "Products"),
@@ -143,6 +127,7 @@ export default async function Home() {
         products={topProducts}
         groupHeading={"Top Products"}
         link={"/products"}
+        upsideDown={true} // Pass the new prop to reverse the order
       />
 
       <AutoCarousel />

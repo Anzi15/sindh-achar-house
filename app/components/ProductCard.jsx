@@ -42,8 +42,8 @@ const ProductCard = ({
 
         {hasDiscount && (
           <>
-            <span className="absolute top-0 right-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
               SALE
+            <span className="absolute top-0 right-0 m-2 rounded-full bg-red-600 px-2 text-center text-sm font-medium text-white">
             </span>
           </>
         )}
@@ -64,7 +64,9 @@ const ProductCard = ({
             <div className="flex items-center mt-2">
             <StarRating rating={productData.ratings.stars} />
             <span className="text-sm text-gray-400 ml-2">
-              ({productData.ratings.numberOfReviews})
+             { productData.ratings.numberOfReviews > 0 && productData.ratings.stars > 0 && (
+              "(" + productData.ratings.numberOfReviews + ")"
+              ) }
             </span>
           </div>
           )

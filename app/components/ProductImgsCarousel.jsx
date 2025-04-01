@@ -1,59 +1,35 @@
-"use client"; // This directive is required for client-side components
+"use client";
 
-import Image from "next/image";
-import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import React from "react";
 
-const ProductImgsCarousel = ({ parsedProductImages, parsedThumbnails }) => {
+const ProductImgsCarousel = ({ parsedProductImages }) => {
   const productImages = JSON.parse(parsedProductImages);
-  // const thumbnails = JSON.parse(parsedThumbnails);
-  const [activeImg, setActiveImg] = useState(0);
-  const [isImgZoomed, setIsImgZoomed] = useState(false);
-
-  const zoomImage = () => {
-    setIsImgZoomed(!isImgZoomed);
-  };
 
   return (
-    <div className="md:px-8 px-4 md:w-1/3 w-full md:block">
-      {/* Active Image Display */}
-      <div className="activeImg relative w-full aspect-square">
+    <div className="md:px-8 px-4 md:w-1/3 w-full">
+      {/* Main Image Slider */}
+      <Swiper
+        spaceBetween={10}
+        navigation
+        pagination={{ clickable: true }}
+        modules={[Navigation, Pagination]}
+        className="w-full aspect-square rounded-md overflow-hidden"
+      >
         {productImages?.map((img, i) => (
-          <Image
-            src={img}
-            key={i}
-            alt="Achar | Pakistan"
-            className={`w-full aspect-square rounded-md skeleton-loading absolute transition-opacity duration-300 object-cover ${
-              i === activeImg ? "opacity-100 z-20" : "opacity-0 z-10"
-            }`}
-            onClick={zoomImage}
-            width={720}
-            height={720}
-            priority={true}
-          />
-        ))}
-      </div>
-
-      {/* Thumbnails */}
-      <div className="w-full flex py-4 gap-4">
-        {productImages?.map((img, i) => (
-          <button
-            className={`w-[32%] hover:opacity-85 transition-all rounded-md ${
-              i == activeImg && "border-2 border-brandOrange object-cover"
-            }`}
-            key={i}
-            onClick={() => setActiveImg(i)}
-          >
-            <Image
+          <SwiperSlide key={i}>
+            <img
               src={img}
-              className="rounded-md w-full skeleton-loading aspect-square"
-              alt=""
-              width={200}
-              height={200}
-              priority={true}
+              alt="Product Image"
+              className="w-full aspect-square object-cover"
             />
-          </button>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };
