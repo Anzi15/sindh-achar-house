@@ -33,8 +33,11 @@ const ProductCard = ({
           src={image1}
           alt={title}
           layout="responsive"
-          width={320}
-          height={320}
+          width={200}
+          height={200}
+          placeholder="blur"
+          blurDataURL="https://i.ibb.co/LdpkyJSj/white-blurred-background-1034-24.png"
+        
         />
 
         {hasDiscount && (

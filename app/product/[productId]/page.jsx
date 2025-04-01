@@ -43,7 +43,7 @@ export default async function ProductsPage({ params }) {
         <h3 className="text-left">
           <b>Description</b>
         </h3>
-        {<HtmlRenderer rawHtml={productData.description} />}
+        {<HtmlRenderer rawHtml={productData.descriptionHtml} />}
       </div>
 
       <div className="bg-yellow-900 w-full overflow-hidden object-center flex items-center relative justify-center aspect-video flex-col p-8 gap-4 md:min-h-fit min-h-[20rem]">
