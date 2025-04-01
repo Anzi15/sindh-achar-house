@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const hideHeaderFooter = pathname === '/checkout' || pathname.startsWith('/admin');
   const [headerText, setHeaderText] = useState("GM FOODS | Home made achars");
+  const [blockMessage, setBlockMessage] = useState(null);
 
   useEffect(() => {
     const fetchHeaderMsg = async () => {
@@ -34,6 +35,32 @@ export default function RootLayout({ children }) {
     };
 
     fetchHeaderMsg();
+  }, []);
+  useEffect(() => {
+    const checkManagementDoc = async () => {
+      try {
+        const docRef = doc(db, "management", "msWbvZ8AmQ0ojP9Xbvxu");
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const docDate = data.date?.toDate();
+          console.log(docDate) // Convert Firestore Timestamp to JavaScript Date
+          const today = new Date();
+          today.setHours(0, 0, 0, 0); // Normalize today's date to midnight for comparison
+
+          if (docDate && docDate <= today) {
+            setBlockMessage(data.message || "Website access is restricted for today.");
+          }
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching management document:", error);
+      }
+    };
+
+    checkManagementDoc();
   }, []);
 
   // Facebook Pixel Initialization
@@ -59,6 +86,14 @@ export default function RootLayout({ children }) {
     fbq('track', 'PageView');
   }, []); // Run only once on page load
 
+
+  // if (blockMessage) {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen text-center p-6">
+  //       <h1 className="text-2xl font-bold">{blockMessage}</h1>
+  //     </div>
+  //   );
+  // }
   return (
     <html lang="en">
       <Head>
@@ -76,6 +111,11 @@ export default function RootLayout({ children }) {
         </noscript>
       </Head>
         <ToastProvider>
+        {blockMessage ? (
+          <div className="flex items-center justify-center h-screen text-center p-6">
+            <h1 className="text-2xl font-bold">{blockMessage}</h1>
+          </div>
+        ) : (
       <body className="antialiased" suppressHydrationWarning={true}>
           {!hideHeaderFooter && (
             <>
@@ -91,6 +131,8 @@ export default function RootLayout({ children }) {
             </>
           )}
       </body>
+        
+        )}
         </ToastProvider>
     </html>
   );
