@@ -357,7 +357,7 @@ const ProductPageUi = ({ parsedProduct }) => {
             <Button className="w-full py-3.5 text-lg hover:bg-brandRed transition-all duration-300">Buy now</Button>
           </Link>
 
-          <div className="md:hidden w-full px-2 py-2  text-white fixed bottom-0 left-0 right-0 z-50 m-auto">
+          {/* <div className="md:hidden w-full px-2 py-2  text-white fixed bottom-0 left-0 right-0 z-50 m-auto">
             <button
               className="bg-[#FE0000] w-full max-w-[95vw] py-5 rounded-2xl flex px-4 items-center gap-2 justify-between"
               onClick={addToCart}
@@ -392,7 +392,7 @@ const ProductPageUi = ({ parsedProduct }) => {
                 Add To Cart
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 

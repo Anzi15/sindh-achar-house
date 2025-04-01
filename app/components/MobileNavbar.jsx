@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
+import { setIsInitial } from "@material-tailwind/react/components/Tabs/TabsContext";
 
 function MobileNavbar({ links, isMobileOpen, onClick }) {
   return (
@@ -37,7 +38,7 @@ function MobileNavbar({ links, isMobileOpen, onClick }) {
 
       {/* Search Bar - Now Always Visible */}
       <div className="w-full">
-        <SearchBar />
+        <SearchBar onPostSearch={onClick} />
       </div>
 
       {/* Navigation Links (Auto Close on Click) */}

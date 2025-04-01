@@ -20,12 +20,12 @@ export async function generateMetadata() {
   const productCount = products.length;
   const title =
     productCount > 0
-      ? `Explore the Top ${productCount} best perfumes in pakistan | AL ZEHRA PERFUMES`
+      ? ` ${productCount} Shikarpuri achars`
       : "No products available";
 
   return {
     title,
-    description: " Looking for the best perfumes in Pakistan? Check out our top picks and reviews to find the perfect scent that suits your style and personality!",
+    description: "Looking for the best shikarpuri achars in Pakistan? Check out our top picks and reviews to find the perfect taste that suits your buds!",
   };
 }
 

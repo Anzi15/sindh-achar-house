@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
       s.parentNode.insertBefore(t, s);
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', '1203417130932778');
+    fbq('init', '1694861041450835');
     fbq('track', 'PageView');
   }, []); // Run only once on page load
 
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
         <title>GM FOODS | Home made achar 
         </title>
         <link rel="icon" href="/logo.svg" sizes="any" />
-        <meta name="description" content="Al Zehra Perfumes store" />
+        <meta name="description" content="GM FOODS" />
         <noscript>
           <img
             height="1"

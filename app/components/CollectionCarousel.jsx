@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import AnimatedDiv from "./AnimatedDiv"
+import Image from "next/image"
 
 const cards = [
   { id: 1, title: "CHUTNEYS", image: "https://i.ibb.co/SD9cxdQR/Cilantro-Chutney-9.jpg", description: "Authentic homemade chutneys with fresh ingredients", link: "/collection/chutney" },
@@ -49,7 +50,7 @@ export default function AutoCarousel() {
                   <AnimatedDiv>
                     <Link href={card.link?card.link:"#"} key={card.id} className="bg-white p-4 rounded-lg flex flex-col items-center">
                       <h3 className="font-medium text-lg md:text-xl mb-4">{card.title}</h3>
-                      <img src={card.image} alt={card.title} className="w-full aspect-square object-cover rounded-md" />
+                      <Image src={card.image} alt={card.title} className="w-full aspect-square object-cover rounded-md" width="720" height="720" />
                       <p className="text-center text-gray-600 mt-2">{card.description}</p>
                     </Link>
                   </AnimatedDiv>

@@ -67,8 +67,10 @@ export default function Header({children, headerText}) {
         /> 
         </Link>
       <Navbar links={links} />
-      <div className="flex justify-center items-center gap-4 ml-auto w-[13rem]">
+      <div className="flex justify-center items-center gap-4 ml-auto w-[13rem] ">
+        <div className="md:block hidden">
       <SearchBar type="meow" />
+        </div>
         <CartButton />
         <HamburgerButton onClick={() => setIsMobileOpen(!isMobileOpen)} />
       </div>

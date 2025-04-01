@@ -147,7 +147,7 @@ export default async function Home() {
 
       <AutoCarousel />
 
-      <section className="w-full flex flex-col md:flex-row items-center">
+      <section className="w-full flex flex-col md:flex-row items-center py-4">
   <div className="md:w-1/2 text-center md:text-left space-y-4  md:px-12 px-4">
   <AnimatedDiv>
     <h2 className="text-2xl font-bold">Pakistan's Leading Pickles & Condiments Brand</h2>

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const productDoc = await getDoc(doc(db, "Products", params.productId));
   const productData = { ...productDoc.data(), id: productDoc.id };
 
-  const title = `${productData.title} | Best Home made achar `;
+  const title = `${productData.title} | Best Home made shikarpuri achar `;
   const description = productData.description;
 
   return {

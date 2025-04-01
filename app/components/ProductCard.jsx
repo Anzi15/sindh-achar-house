@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartBtn from "./AddToCartBtn";
+import StarRating from "./StarRatings";
 
 const ProductCard = ({
   link,
@@ -54,10 +55,21 @@ const ProductCard = ({
         >
           {title}
         </h5>
-        <div className="mt-2 mb-5 md:flex items-center justify-between">
+
+        {
+          productData.ratings && (
+            <div className="flex items-center mt-2">
+            <StarRating rating={productData.ratings.stars} />
+            <span className="text-sm text-gray-400 ml-2">
+              ({productData.ratings.numberOfReviews})
+            </span>
+          </div>
+          )
+        }
+        <div className="mt-2 mb-5 md:flex justify-between">
           <p>
             <span
-              className={`md:text-2xl font-semibold text-brandOrange ${
+              className={`md:text-2xl text-left text-[#2f2f2f] font-bold ${
                 loading && "skeleton-loading"
               }`}
             >
@@ -66,7 +78,7 @@ const ProductCard = ({
           </p>
           {hasDiscount && (
             <span
-              className={`ml-2 text-sm text-slate-900 line-through ${
+              className={`ml-2 text-red-600 text-sm text-slate-900 line-through ${
                 loading && "skeleton-loading"
               }`}
             >
