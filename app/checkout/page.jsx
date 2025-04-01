@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-
+import { Suspense } from "react";
 import { v4 as uuidv4 } from "uuid";
 import InputField from "../components/InputField";
 import { IoCheckmarkSharp } from "react-icons/io5";
@@ -560,4 +560,10 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutPage />
+    </Suspense>
+  );
+}

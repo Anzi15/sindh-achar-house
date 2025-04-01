@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import OrderConfirmationPage from "./[orderId]/page";
 
 const OrderConfirmation = () => {
   const [animate, setAnimate] = useState(false);
@@ -161,5 +162,10 @@ function formatPaymentMethod(method) {
   
   return methodMap[method] || method;
 }
-
-export default OrderConfirmation;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <OrderConfirmation />
+    </Suspense>
+  );
+}

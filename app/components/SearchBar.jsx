@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = ({ type = "full" }) => {
@@ -57,4 +57,10 @@ const SearchBar = ({ type = "full" }) => {
   );
 };
 
-export default SearchBar;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchBar />
+    </Suspense>
+  );
+}
