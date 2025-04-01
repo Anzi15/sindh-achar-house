@@ -48,11 +48,6 @@ const ProductCardGroup = ({ products, groupHeading = null, loading, link = null,
       <div className="w-full flex justify-between">
         {groupHeading && <h3 className="text-3xl uppercase text-left font-semibold max-w-fit">{groupHeading}</h3>}
 
-        {link && (
-          <Link href={`${link}`} className="normal-brand-link font-bold">
-            View All
-          </Link>
-        )}
       </div>
       <div className={`w-full grid lg:grid-cols-4 gap-3 ${style === "short" ? "grid-cols-2" : "grid-cols-1"}`}>
         {reversedProductArray.map((product) => (
