@@ -60,19 +60,13 @@ const Footer = () => {
           <p className="font-semibold text-white text-left">Top Collections</p>
   
           <div className="flex flex-col items-start mt-5 space-y-2">
-            <Link href={"/collections/achar"}>
+            <Link href={"/collection/achar"}>
             <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
             Achars
             </p>
             </Link>
 
-            <Link href={"/collection/women"}>
-            <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
-              Women
-            </p>
-            </Link>
-
-            <Link href={"/collections/chutney"}>
+            <Link href={"/collection/chutney"}>
             
             <p className=" transition-colors duration-300 text-gray-300 hover:text-blue-400 hover:underline hover:cursor-pointer ">
             Chutneys
@@ -115,11 +109,11 @@ const Footer = () => {
       </div>
 
     </div>
-    <div className="w-full text-center">
+    {/* <div className="w-full text-center">
        <p>
         Designed And Developed By - <Link href="https://anziandco.com" className="underline font-bold" targert="_blank">Anzi &. CO</Link>
        </p>
-    </div>
+    </div> */}
   </footer>
   
   );

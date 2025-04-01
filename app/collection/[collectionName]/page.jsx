@@ -41,14 +41,24 @@ export default async function ProductsPage({ params }) {
 
   return (
     <>
-      <div>
-        <div className="px-10 pt-10 flex w-full justify-between items-center">
-          <h1 className="text-[3rem] text-left uppercase">{params.collectionName}</h1>
-        </div>
+      <div className="px-10 pt-10 flex w-full justify-between items-center">
+        <h1 className="text-[3rem] text-left uppercase">
+          {params.collectionName}
+        </h1>
+      </div>
+
+      {products.length > 0 ? (
         <div className="products-list">
           <ProductCardGroup products={products} />
         </div>
-      </div>
+      ) : (
+        <div className="px-10 pt-10">
+          <h1 className="text-[3rem] text-left">
+            No product found for {params.collectionName}
+          </h1>
+        </div>
+      )}
     </>
   );
 }
+

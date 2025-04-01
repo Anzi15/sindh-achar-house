@@ -199,18 +199,18 @@ export default async function Home() {
 
       <div className="max-w-3xl mx-auto p-6 space-y-6">
         <AnimatedDiv>
-      <h2 className="text-3xl font-bold text-gray-800">100+ Best Achars & Condiments in Pakistan by GoFoodz</h2>
+      <h2 className="text-3xl font-bold text-gray-800">100+ Best Achars & Condiments in Pakistan by Gm Foodz</h2>
         </AnimatedDiv>
 
         <AnimatedDiv>
       <p className="text-gray-700 text-lg">
-      GoFoodz is your go-to online store for the finest selection of achars, chutneys, and condiments, crafted with authentic flavors and high-quality ingredients. We take pride in offering traditional, homemade-style pickles that bring the perfect balance of spice, tang, and aroma to your meals.
+      Gm Foods is your go-to online store for the finest selection of achars, chutneys, and condiments, crafted with authentic flavors and high-quality ingredients. We take pride in offering traditional, homemade-style pickles that bring the perfect balance of spice, tang, and aroma to your meals.
       </p>
         </AnimatedDiv>
 
         <AnimatedDiv>
       <p className="text-gray-700 text-lg">
-      Our collection includes a diverse range of achars, sauces, and spreads, ensuring that every taste preference is catered to. Whether you're looking for a fiery kick to your dishes or a rich, flavorful accompaniment, GoFoodz has something for everyone. From classic mango achar to exotic mixed pickles, our products are made using traditional recipes, preserving the rich heritage of Pakistani flavors.
+      Our collection includes a diverse range of achars, sauces, and spreads, ensuring that every taste preference is catered to. Whether you're looking for a fiery kick to your dishes or a rich, flavorful accompaniment, Gm Foodz has something for everyone. From classic mango achar to exotic mixed pickles, our products are made using traditional recipes, preserving the rich heritage of Pakistani flavors.
       </p>
 
         </AnimatedDiv>
@@ -218,7 +218,7 @@ export default async function Home() {
 
 <AnimatedDiv>
       <p className="text-gray-700 text-lg">
-      Branded achars and condiments have become increasingly expensive due to inflation and import costs, but at GoFoodz, we prioritize affordability without compromising on quality. Our secret lies in sourcing the best local ingredients and optimizing our processes to deliver fresh, preservative-free products at unbeatable prices.
+      Branded achars and condiments have become increasingly expensive due to inflation and import costs, but at Gm Foodz, we prioritize affordability without compromising on quality. Our secret lies in sourcing the best local ingredients and optimizing our processes to deliver fresh, preservative-free products at unbeatable prices.
       </p>
 </AnimatedDiv>
     </div>
