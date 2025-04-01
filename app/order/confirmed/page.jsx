@@ -12,7 +12,6 @@ const OrderConfirmation = () => {
   const orderId = searchParams.get("orderId") || `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
   const paymentMethod = searchParams.get("paymentMethod") || "Credit Card";
   const customerName = searchParams.get("name") || "Customer";
-  const customerEmail = searchParams.get("email") || "";
   const orderDate = searchParams.get("date") || new Date().toLocaleDateString();
   const orderTotal = searchParams.get("total") || "---";
 
@@ -76,7 +75,7 @@ const OrderConfirmation = () => {
             animate ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           } transition-all duration-700 delay-[1400ms]`}
         >
-          Thank you, {customerName}! We'll send a confirmation to {customerEmail || "your email"} shortly.
+          Thank you, {customerName}! Your order has been confirmed and will arrive in 2-3 days.
         </p>
 
         {/* Order details */}

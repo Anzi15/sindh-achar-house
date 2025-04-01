@@ -62,7 +62,6 @@ const CheckoutPage = () => {
   const selectedVariantIndex = searchParams.get("selectedVariantIndex");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [extraAddress, setExtraAddress] = useState("");
   const [city, setCity] = useState("");
@@ -192,7 +191,6 @@ const CheckoutPage = () => {
       customer: {
         firstName,
         lastName,
-        email,
         phoneNumber,
         shippingAddress: {
           street: address,
@@ -218,7 +216,6 @@ const CheckoutPage = () => {
       ],
       shippingFees,
       grandTotal: total,
-      ConfirmationEmailSent: false,
     };
   
     try {
@@ -262,7 +259,6 @@ const CheckoutPage = () => {
       `orderId=${orderData.orderId}` +
       `&paymentMethod=${orderData.payment.method}` +
       `&name=${encodeURIComponent(orderData.customer.firstName + ' ' + orderData.customer.lastName)}` +
-      `&email=${encodeURIComponent(orderData.customer.email)}` +
       `&date=${encodeURIComponent(orderDate)}` +
       `&total=${orderData.grandTotal}` +
       `&items=${orderData.items.length}`;
@@ -290,14 +286,7 @@ const CheckoutPage = () => {
           <h3 className="text-xl text-left my-9">Contact information</h3>
           <form onSubmit={handleSubmit}>
             <div className="border-b pb-8 gap-4 flex md:flex-row flex-col">
-              <InputField
-                inputAutoComplete={"email"}
-                inputName={"Email"}
-                valueReturner={setEmail}
-                inputValue={email}
-                requiredInput={true}
-                className="w-1/2"
-              />
+
               <InputField
                 inputAutoComplete={"tel"}
                 inputType="tel"
