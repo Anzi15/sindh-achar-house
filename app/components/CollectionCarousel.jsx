@@ -9,7 +9,7 @@ import Image from "next/image"
 const cards = [
   { id: 1, title: "CHUTNEYS", image: "https://i.ibb.co/SD9cxdQR/Cilantro-Chutney-9.jpg", description: "Authentic homemade chutneys with fresh ingredients", link: "/collection/chutney" },
   { id: 2, title: "ACHAR", image: "https://i.ibb.co/QFVKy9CM/65449803.webp", description: "Traditional pickles made with age-old recipes", link: "/collection/achar" },
-  { id: 3, title: "MURABA", image: "https://i.ibb.co/wZR0vcDQ/61878031.webp", description: "Traditional South Asian sweet fruit preserve", link: "/collection/muraba" },
+  { id: 3, title: "MURABBA", image: "https://i.ibb.co/wZR0vcDQ/61878031.webp", description: "Traditional South Asian sweet fruit preserve", link: "/collection/murabba" },
 ]
 
 export default function AutoCarousel() {
