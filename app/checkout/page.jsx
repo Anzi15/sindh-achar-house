@@ -63,7 +63,6 @@ const CheckoutPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
-  const [extraAddress, setExtraAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -194,7 +193,6 @@ const CheckoutPage = () => {
         phoneNumber,
         shippingAddress: {
           street: address,
-          nearSpot: extraAddress,
           city,
           state,
         },
@@ -325,12 +323,7 @@ const CheckoutPage = () => {
                 valueReturner={setAddress}
                 inputName="Street Address"
               />
-              <InputField
-                inputAutoComplete={"address-line2"}
-                inputName="Apartment, Suite, etc. (optional)"
-                inputValue={extraAddress}
-                valueReturner={setExtraAddress}
-              />
+              
               <div className="flex gap-4 md:flex-row flex-col">
                 <InputField
                   requiredInput={true}
