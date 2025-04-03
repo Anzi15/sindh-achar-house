@@ -11,15 +11,15 @@ const StarRating = ({ rating }) => {
     <div className="flex items-center">
       {/* Full stars */}
       {[...Array(fullStars)].map((_, i) => (
-        <Star key={`full-${i}`} className="text-yellow-900 w-5 h-5 fill-current" />
+        <Star key={`full-${i}`} className="text-yellow-900 w-4 h-4 fill-current" />
       ))}
 
       {/* Half Star - Two overlapping layers */}
       {halfStar && (
-        <div className="relative w-5 h-5">
-          <Star className="absolute left-0 top-0 text-yellow-900 w-5 h-5 stroke-current" />
+        <div className="relative w-4 h-4">
+          <Star className="absolute left-0 top-0 text-yellow-900 w-4 h-4 stroke-current" />
           <Star
-            className="absolute left-0 top-0 text-yellow-900 w-5 h-5 fill-current"
+            className="absolute left-0 top-0 text-yellow-900 w-4 h-4 fill-current"
             style={{ clipPath: "inset(0 50% 0 0)" }} // Half-filled effect
           />
         </div>
@@ -27,7 +27,7 @@ const StarRating = ({ rating }) => {
 
       {/* Empty stars */}
       {[...Array(emptyStars)].map((_, i) => (
-        <Star key={`empty-${i}`} className="text-yellow-900 w-5 h-5 stroke-current" />
+        <Star key={`empty-${i}`} className="text-yellow-900 w-4 h-4 stroke-current" />
       ))}
     </div>
   );
