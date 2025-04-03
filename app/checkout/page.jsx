@@ -427,7 +427,7 @@ const CheckoutPage = () => {
             </h3>
           </div>
 
-          {isSummaryExpanded && window.innerWidth >= 400 && (
+          {isSummaryExpanded && (
   <div>
     <div className="products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4">
       {productsLoading ? (
