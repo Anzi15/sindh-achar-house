@@ -249,6 +249,13 @@ const CheckoutPage = () => {
       // const orderDate = orderData.createdAt.toDate().toLocaleDateString();
       
       // Construct the URL with all relevant order parameters
+      await fetch("/api/sendAdminEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
   toast.success("Your order has been placed");
 
     // Construct the URL
@@ -262,7 +269,7 @@ const CheckoutPage = () => {
       `&items=${orderData.items.length}`;
 
     // Set the href of the hidden link
-    orderConfirmationRef.current.href = confirmationUrl;
+    // orderConfirmationRef.current.href = confirmationUrl;
     
     // Simulate a click
     orderConfirmationRef.current.click();
@@ -273,6 +280,7 @@ const CheckoutPage = () => {
       setIsSubmissionLoading(false);
     }
   };
+  
   return (
     <>
       <header className=" py-8 text-center bg-white border-b-4">
