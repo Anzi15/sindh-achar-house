@@ -24,7 +24,7 @@ const ProductCard = ({
     <>
     <div
       
-      className="group my-4 md:my-10 flex m-[1%] w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-small hover:shadow-md"
+      className="group my-4 md:my-10 flex m-[1%] w-full flex-col overflow-hidden rounded-lg border border-gray-100  shadow-small hover:shadow-md"
     >
       <Link href={link}>
       <div className="flex rounded-xl relative">

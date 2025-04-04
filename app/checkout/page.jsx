@@ -278,7 +278,7 @@ const CheckoutPage = () => {
       <header className=" py-8 text-center bg-white border-b-4">
         <h1 className="text-4xl">GM FOODZ</h1>
       </header>
-      <main className="w-full bg-[#F9FAFB] py-10 flex md:flex-row flex-col-reverse">
+      <main className="w-full bg-[#f1faee] py-10 flex md:flex-row flex-col-reverse">
         <section className="md:w-1/2 px-8 w-full">
         <a ref={orderConfirmationRef} style={{ display: "none" }}>Redirecting...</a>
           <h3 className="text-xl text-left my-9">Contact information</h3>
@@ -392,9 +392,6 @@ const CheckoutPage = () => {
         <section className="md:w-1/2 w-full px-8 md:!sticky top-4">
           <div
             className="flex w-full justify-between"
-            onClick={() => {
-              setIsSummaryExpanded(!isSummaryExpanded);
-            }}
           >
             <h3 className="text-xl text-left my-9">Order summary</h3>
             <h3
@@ -427,7 +424,6 @@ const CheckoutPage = () => {
             </h3>
           </div>
 
-          {isSummaryExpanded && (
   <div>
     <div className="products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4">
       {productsLoading ? (
@@ -534,7 +530,7 @@ const CheckoutPage = () => {
       />
     </div>
   </div>
-)}
+
 
         </section>
       </main>

@@ -26,7 +26,7 @@ const AddToCartBtn = ({productData}) => {
     <div>
               <button
         className={`mt-4 w-full border-2 border-brandRed
-         text-brandRed py-2 rounded-lg transition duration-300 hover:bg-brandRed hover:text-white md:text-md text-smPPRODUC`}
+         text-brandRed py-2 rounded-lg transition duration-300 hover:bg-brandRed hover:text-white md:text-md text-sm bg-white`}
         onClick={() => {
          addToCart()
         }}
