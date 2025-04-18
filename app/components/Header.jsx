@@ -55,9 +55,9 @@ export default function Header({children, headerText}) {
     </div>
     </a>
     <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center justify-center w-full h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28 my-4 bg-white shadow-md rounded-lg relative z-10">
-    <div className="flex justify-between items-center mx-auto min-w-full">
+    <div className="flex justify-between items-center mx-auto md:min-w-fit min-w-full w-fit">
     <HamburgerButton onClick={() => setIsMobileOpen(!isMobileOpen)} />
-    <Link href="/" className="flex justify-center items-center h-full">
+    <Link href="/" className="flex justify-center items-center w-full">
       <Image
         src="/logo.svg"
         alt="Achars"
@@ -68,7 +68,6 @@ export default function Header({children, headerText}) {
         onContextMenu={(e) => e.preventDefault()}
       />
     </Link>
-        <CartButton className="[33%]" />
   </div>
 
       <Navbar links={links} />
@@ -76,6 +75,9 @@ export default function Header({children, headerText}) {
         <div className="md:block hidden">
       <SearchBar type="meow" onPostSearch={()=>{}} />
         </div>
+
+        <CartButton className="[33%]" />
+
 
       </div>
       <MobileNavbar
