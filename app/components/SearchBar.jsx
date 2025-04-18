@@ -17,10 +17,8 @@ const SearchBar = ({ type = "full", onPostSearch }) => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    onPostSearch();
-    if (query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query)}`);
-    }
+    // onPostSearch();
+    router.push(`/search?query=${encodeURIComponent(query)}`);
   };
 
   return (

@@ -54,25 +54,29 @@ export default function Header({children, headerText}) {
       <FaArrowRight />
     </div>
     </a>
-    <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center gap-[103px] h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28 my-4 justice ">
-      <Link href={"/"}>
-    <Image
+    <header className="max-w-[1440px] mx-auto pt-7 pb-3 flex items-center justify-center w-full h-[84px] min-[1440px]:h-fit px-4 md:px-8 min-[1440px]:px-28 my-4 bg-white shadow-md rounded-lg relative z-10">
+    <div className="flex justify-between items-center mx-auto min-w-full">
+    <HamburgerButton onClick={() => setIsMobileOpen(!isMobileOpen)} />
+    <Link href="/" className="flex justify-center items-center h-full">
+      <Image
         src="/logo.svg"
         alt="Achars"
         width={120}
         height={120}
         draggable={false}
         className="select-none h-[90%] aspect-square"
-        onContextMenu={(e)=>{e.preventDefault()}}
-        /> 
-        </Link>
+        onContextMenu={(e) => e.preventDefault()}
+      />
+    </Link>
+        <CartButton className="[33%]" />
+  </div>
+
       <Navbar links={links} />
       <div className="flex justify-center items-center gap-4 ml-auto w-[13rem] ">
         <div className="md:block hidden">
-      <SearchBar type="meow" />
+      <SearchBar type="meow" onPostSearch={()=>{}} />
         </div>
-        <CartButton />
-        <HamburgerButton onClick={() => setIsMobileOpen(!isMobileOpen)} />
+
       </div>
       <MobileNavbar
         links={links}
