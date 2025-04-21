@@ -45,8 +45,8 @@ const ProductCardGroup = ({ products, groupHeading = null, loading, link = null,
   return (
     <div className="my-12 px-8 ">
       {/* Conditional rendering for group heading */}
-      <div className="w-full flex justify-between">
-        {groupHeading && <h3 className="text-3xl uppercase text-left font-semibold max-w-fit">{groupHeading}</h3>}
+      <div className="w-full flex justify-center text-center ">
+        {groupHeading && <h3 className="text-3xl uppercase  font-semibold max-w-fit text-center">{groupHeading}</h3>}
 
       </div>
       <div className={`w-full grid lg:grid-cols-4 gap-3 ${style === "short" ? "grid-cols-2" : "grid-cols-1"}`}>

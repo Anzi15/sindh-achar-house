@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import Autoplay from "embla-carousel-autoplay";
-
+import { Star } from "lucide-react"
 import {
   Carousel,
   CarouselContent,
@@ -72,55 +72,61 @@ export default function TestimonialSlider({ testimonials = [
 }) {
   return (
     <>
-      <section className="w-full max-w-[98vw] py-4 cursor-grab ">
+<section className="w-full max-w-[98vw] py-4 cursor-grab">
+  <h3 className="text-3xl uppercase m-auto font-semibold max-w-fit text-center">Reviews</h3>
+  <div className="mx-auto lg:max-w-6xl px-3">
+    <Carousel
+      opts={{
+        loop: true,
+        align: "start",
+      }}
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+    >
+      <CarouselContent>
+        {testimonials.map((testimonial, index) => (
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <AnimatedDiv>
+              <div className="flex flex-col px-4 py-5 sm:p-6">
+                <q className="flex-1 text-gray-600 dark:text-gray-300">
+                  {testimonial.quote}
+                </q>
 
-        <div className="mx-auto lg:max-w-6xl px-3">
-          <Carousel
-            opts={{
-              loop: true,
-              align: "start",
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-              }),
-            ]}
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <AnimatedDiv>
-                  <div className="flex flex-col px-4 py-5 sm:p-6">
-                    <q className="flex-1 text-gray-600 dark:text-gray-300">
-                      {testimonial.quote}
-                    </q>
-                    <div className="mt-6 flex gap-3">
-                      <span className="inline-flex rounded-full">
-                        <Image
-                          className="h-10 w-10 rounded-full"
-                          height={40}
-                          width={40}
-                          alt={testimonial.name}
-                          src={testimonial.imgSrc}
-                          loading="lazy"
-                          />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {testimonial.name}
-                        </p>
-                      </div>
-                    </div>
+                {/* 5 stars */}
+                <div className="flex mt-4 gap-1 text-yellow-800">
+                  {[...Array(5)].map((_, starIndex) => (
+                    <Star key={starIndex} fill="currentColor" stroke="currentColor" size={20} />
+                  ))}
+                </div>
+
+                <div className="mt-6 flex gap-3">
+                  <span className="inline-flex rounded-full">
+                    <Image
+                      className="h-10 w-10 rounded-full"
+                      height={40}
+                      width={40}
+                      alt={testimonial.name}
+                      src={testimonial.imgSrc}
+                      loading="lazy"
+                    />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {testimonial.name}
+                    </p>
                   </div>
-                          </AnimatedDiv>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            
-          </Carousel>
-        </div>
-      </section>
+                </div>
+              </div>
+            </AnimatedDiv>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  </div>
+</section>
     </>
   );
 }

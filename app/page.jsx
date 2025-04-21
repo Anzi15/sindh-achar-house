@@ -114,7 +114,7 @@ export default async function Home() {
 
       <div className="w-screen flex items-center justify-center">
         <Image
-          src="/cover.png"
+          src="/home made achar.jpg"
           alt="Website Cover"
           className="aspect-video w-full skeleton-loading"
           layout="responsive"
