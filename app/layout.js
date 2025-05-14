@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
       s.parentNode.insertBefore(t, s);
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', '1694861041450835');
+    fbq('init', '586209311174860');
     fbq('track', 'PageView');
   }, []); // Run only once on page load
 
