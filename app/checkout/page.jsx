@@ -269,7 +269,7 @@ const CheckoutPage = () => {
       `&items=${orderData.items.length}`;
 
     // Set the href of the hidden link
-    // orderConfirmationRef.current.href = confirmationUrl;
+    orderConfirmationRef.current.href = confirmationUrl;
     
     // Simulate a click
     orderConfirmationRef.current.click();
