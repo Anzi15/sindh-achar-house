@@ -105,7 +105,7 @@ const CheckoutPage = () => {
       subtotal += JSON.parse(product.selectedVariant.price) * product.quantity;
     });
     setSubTotal(subtotal);
-    setShippingFees(subtotal > 2200 ? 0 : 150);
+    setShippingFees(0);
     setCalculationsLoading(false);
   }, [products]);
 
