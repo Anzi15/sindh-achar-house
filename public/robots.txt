@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://alzehrabygm.store
+Host: https://sindhacharhouse.com
 
 # Sitemaps
-Sitemap: https://alzehrabygm.store/sitemap.xml
+Sitemap: https://sindhacharhouse.com/sitemap.xml

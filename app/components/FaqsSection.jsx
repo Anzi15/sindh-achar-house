@@ -15,7 +15,7 @@ const FaqsSection = () => {
           <div className="w-full lg:w-1/3">
             <img
               src="https://i.ibb.co/Gf4mNrPW/image.png"
-              alt="FAQ section GM FOODZ"
+              alt="FAQ section"
               draggable={false}
               onContextMenu={(e) => {
                 e.preventDefault();
@@ -30,15 +30,15 @@ const FaqsSection = () => {
                   FAQs
                 </h6>
                 <h2 className="text-4xl text-center font-bold text-gray-900 leading-[3.25rem] mb-5 lg:text-left">
-                  Have questions about GM FOODZ?
+                  Have questions about Sindh Achar?
                 </h2>
               </div>
               <div className="accordion-group text-left">
                 {[
                   {
-                    question: "What kind of food does GM FOODZ offer?",
+                    question: "What kind of food does Sindh Achar House offer?",
                     answer:
-                      "GM FOODZ offers a variety of delicious and hygienic meals, including fast food, traditional dishes, and healthy options made with fresh ingredients.",
+                      "Sindh Achar House offers a variety of delicious and hygienic meals, including fast food, traditional dishes, and healthy options made with fresh ingredients.",
                   },
                   {
                     question: "How can I place an order?",
@@ -48,7 +48,7 @@ const FaqsSection = () => {
                   {
                     question: "Do you offer home delivery?",
                     answer:
-                      "Yes! GM FOODZ provides fast and safe home delivery services. Check our delivery coverage on our website for more details.",
+                      "Yes! Sindh Achar House provides fast and safe home delivery services. Check our delivery coverage on our website for more details.",
                   },
                   {
                     question: "Are your ingredients fresh?",

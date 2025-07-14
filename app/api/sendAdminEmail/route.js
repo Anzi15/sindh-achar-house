@@ -26,7 +26,7 @@ export async function POST(req) {
 
     const mailOptions = {
       from: `"Your Store" <mehrandadbeh.anziandco@gmail.com>`,
-      to: "gmfoodz1@gmail.com",
+      to: ["anziandco@gmail.com", "djam4343@gmail.com"],
       subject: `New Order Received`,
       text: `A new order has been placed. on your website`,
     };

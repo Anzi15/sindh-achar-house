@@ -42,14 +42,14 @@ const paymentMethods = [
     icon: "/easypaisa.webp",
     name: "EasyPaisa",
     context:
-      "Send your payment to easypaisa on this number: <a class='text-light-blue-800' href='https://wa.me/923053820015?text=Hi, please guide me i want to pay using easypasia for a order on your website' target='_blank'>03337280556 </a>, and <a class='text-light-blue-800' target='_blank' href='https://wa.me/923053820015?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
+      "Send your payment to easypaisa on this number: <a class='text-light-blue-800' href='https://wa.me/923047210222?text=Hi, please guide me i want to pay using easypasia for a order on your website' target='_blank'>03337280556 </a>, and <a class='text-light-blue-800' target='_blank' href='https://wa.me/923047210222?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
     identifier: "EZP",
   },
   {
     icon: "/bank.webp",
     name: "Bank Transfer",
     context:
-      "Meezan Bank  <br/> Account Number: <b> 98300108817324 </b> <br/>  <a class='text-light-blue-800' target='_blank' href='https://wa.me/923053820015?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
+      "Meezan Bank  <br/> Account Number: <b> 98300108817324 </b> <br/>  <a class='text-light-blue-800' target='_blank' href='https://wa.me/923047210222?text=Hi, please guide me i share my screenshot with you of my payment'> send us a screenshot </a>",
     identifier: "BT",
   },
 ];
@@ -75,7 +75,7 @@ const CheckoutPage = () => {
   const [productsLoading, setProductsLoading] = useState(true);
   const [calculationsLoading, setCalculationsLoading] = useState(true);
   const [isSubmissionLoading, setIsSubmissionLoading] = useState(false);
-  const orderConfirmationRef = useRef(null)
+  const orderConfirmationRef = useRef(null);
   const [allProductTags, setAllProductTags] = useState([]);
   const [discountValue, setDiscountValue] = useState(0);
   const [discountType, setDiscountType] = useState(null);
@@ -110,7 +110,8 @@ const CheckoutPage = () => {
   }, [products]);
 
   useEffect(() => {
-    const storedCartItems =JSON.parse(localStorage.getItem("cart-items")) || [];
+    const storedCartItems =
+      JSON.parse(localStorage.getItem("cart-items")) || [];
     if (storedCartItems) {
       setCartItems(storedCartItems);
       setCartItemsLoading(false);
@@ -135,7 +136,7 @@ const CheckoutPage = () => {
           setShippingFees(shipping_fees);
           setAllProductTags(productTags);
         } else {
-          if(cartItemsLoading) return
+          if (cartItemsLoading) return;
           router.push(`/cart`);
           return;
         }
@@ -215,7 +216,7 @@ const CheckoutPage = () => {
       shippingFees,
       grandTotal: total,
     };
-  
+
     try {
       await setDoc(doc(db, "orders", orderData.orderId), orderData);
       if (discountValue > 0) {
@@ -223,19 +224,19 @@ const CheckoutPage = () => {
           collection(db, "coupons"),
           where("couponCode", "==", couponCodeApplied)
         );
-  
+
         const querySnapshot = await getDocs(q);
-  
+
         if (!querySnapshot.empty) {
           // Assuming there's only one document with this couponCode
           const docRef = doc(db, "coupons", querySnapshot.docs[0].id);
           const docSnap = querySnapshot.docs[0];
-  
+
           const docSnapData = docSnap.data();
-  
+
           // Increment the usedCount field
           const updatedUsedCount = (docSnapData.usedCount || 0) + 1;
-  
+
           // Update the document with the new usedCount
           await updateDoc(docRef, {
             usedCount: updatedUsedCount,
@@ -244,10 +245,10 @@ const CheckoutPage = () => {
       }
       if (source == "cart") localStorage.removeItem("cart-items");
       // toast.success("Your order has been placed");
-      
+
       // Format the date from the Timestamp
       // const orderDate = orderData.createdAt.toDate().toLocaleDateString();
-      
+
       // Construct the URL with all relevant order parameters
       await fetch("/api/sendAdminEmail", {
         method: "POST",
@@ -256,23 +257,26 @@ const CheckoutPage = () => {
         },
         body: JSON.stringify(orderData),
       });
-  toast.success("Your order has been placed");
+      toast.success("Your order has been placed");
 
-    // Construct the URL
-    const orderDate = orderData.createdAt.toDate().toLocaleDateString();
-    const confirmationUrl = `/order/confirmed?` + 
-      `orderId=${orderData.orderId}` +
-      `&paymentMethod=${orderData.payment.method}` +
-      `&name=${encodeURIComponent(orderData.customer.firstName + ' ' + orderData.customer.lastName)}` +
-      `&date=${encodeURIComponent(orderDate)}` +
-      `&total=${orderData.grandTotal}` +
-      `&items=${orderData.items.length}`;
+      // Construct the URL
+      const orderDate = orderData.createdAt.toDate().toLocaleDateString();
+      const confirmationUrl =
+        `/order/confirmed?` +
+        `orderId=${orderData.orderId}` +
+        `&paymentMethod=${orderData.payment.method}` +
+        `&name=${encodeURIComponent(
+          orderData.customer.firstName + " " + orderData.customer.lastName
+        )}` +
+        `&date=${encodeURIComponent(orderDate)}` +
+        `&total=${orderData.grandTotal}` +
+        `&items=${orderData.items.length}`;
 
-    // Set the href of the hidden link
-    orderConfirmationRef.current.href = confirmationUrl;
-    
-    // Simulate a click
-    orderConfirmationRef.current.click();
+      // Set the href of the hidden link
+      orderConfirmationRef.current.href = confirmationUrl;
+
+      // Simulate a click
+      orderConfirmationRef.current.click();
     } catch (error) {
       console.log("there a error");
       console.log(error);
@@ -280,19 +284,20 @@ const CheckoutPage = () => {
       setIsSubmissionLoading(false);
     }
   };
-  
+
   return (
     <>
       <header className=" py-8 text-center bg-white border-b-4">
-        <h1 className="text-4xl">GM FOODZ</h1>
+        <h1 className="text-4xl">Sindh Achar</h1>
       </header>
       <main className="w-full bg-[#f1faee] py-10 flex md:flex-row flex-col-reverse">
         <section className="md:w-1/2 px-8 w-full">
-        <a ref={orderConfirmationRef} style={{ display: "none" }}>Redirecting...</a>
+          <a ref={orderConfirmationRef} style={{ display: "none" }}>
+            Redirecting...
+          </a>
           <h3 className="text-xl text-left my-9">Contact information</h3>
           <form onSubmit={handleSubmit}>
             <div className="border-b pb-8 gap-4 flex md:flex-row flex-col">
-
               <InputField
                 inputAutoComplete={"tel"}
                 inputType="tel"
@@ -331,7 +336,7 @@ const CheckoutPage = () => {
                 valueReturner={setAddress}
                 inputName="Street Address"
               />
-              
+
               <div className="flex gap-4 md:flex-row flex-col">
                 <InputField
                   requiredInput={true}
@@ -365,7 +370,11 @@ const CheckoutPage = () => {
                         setPaymentMethod(method.identifier);
                       }}
                     >
-                      <img src={method?.icon || "/placeholder.svg"} className="h-8" alt={method.name} />
+                      <img
+                        src={method?.icon || "/placeholder.svg"}
+                        className="h-8"
+                        alt={method.name}
+                      />
                       <div>
                         <h3>{method.name}</h3>
                         <div
@@ -375,9 +384,7 @@ const CheckoutPage = () => {
                       </div>
 
                       {paymentMethod === method.identifier && (
-                        <div
-                          className="bg-brandOrange w-fit p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2"
-                        >
+                        <div className="bg-brandOrange w-fit p-1 rounded-full absolute top-0 right-0 translate-x-2 -translate-y-2">
                           <IoCheckmarkSharp className="text-white" />
                         </div>
                       )}
@@ -398,9 +405,7 @@ const CheckoutPage = () => {
         </section>
 
         <section className="md:w-1/2 w-full px-8 md:!sticky top-4">
-          <div
-            className="flex w-full justify-between"
-          >
+          <div className="flex w-full justify-between">
             <h3 className="text-xl text-left my-9">Order summary</h3>
             <h3
               className={`text-xl flex gap-4 items-center text-left my-9 ${
@@ -432,114 +437,115 @@ const CheckoutPage = () => {
             </h3>
           </div>
 
-  <div>
-    <div className="products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4">
-      {productsLoading ? (
-        <div className="flex text-left gap-4 md:w-1/2 w-full">
           <div>
-            <div className="w-[7rem] skeleton-loading aspect-square rounded" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <h3 className="skeleton-loading">Best Perfumes</h3>
-            <h4 className="text-gray-600 skeleton-loading w-fit">
-              Rs. 1500
-            </h4>
-            <h5 className="text-gray-400 skeleton-loading w-fit">
-              x 2
-            </h5>
-          </div>
-        </div>
-      ) : (
-        products.map((product, i) => (
-          <div
-            key={`product-${product.productId || i}`}
-            className="flex text-left gap-4 md:w-1/2 w-full"
-          >
+            <div className="products md:flex flex-wrap px-4 md:flex-row flex-col gap-y-4">
+              {productsLoading ? (
+                <div className="flex text-left gap-4 md:w-1/2 w-full">
+                  <div>
+                    <div className="w-[7rem] skeleton-loading aspect-square rounded" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="skeleton-loading">Best Perfumes</h3>
+                    <h4 className="text-gray-600 skeleton-loading w-fit">
+                      Rs. 1500
+                    </h4>
+                    <h5 className="text-gray-400 skeleton-loading w-fit">
+                      x 2
+                    </h5>
+                  </div>
+                </div>
+              ) : (
+                products.map((product, i) => (
+                  <div
+                    key={`product-${product.productId || i}`}
+                    className="flex text-left gap-4 md:w-1/2 w-full"
+                  >
+                    <div>
+                      <img
+                        src={
+                          product.product.primaryImgThumbnails[0].url ||
+                          "/placeholder.svg"
+                        }
+                        className="w-[7rem] aspect-square rounded"
+                        alt={product.product.title}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h3>{product.product.title}</h3>
+                      <h4 className="text-gray-600">
+                        Rs. {product.selectedVariant.price}
+                      </h4>
+                      <h5 className="text-gray-400">x {product.quantity}</h5>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="py-8 flex flex-col gap-4">
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="font-medium text-md leading-8 text-gray-800">
+                    Sub Total
+                  </p>
+                  <p
+                    className={`font-semibold text-md leading-8 text-red-800 ${
+                      productsLoading ? "skeleton-loading" : ""
+                    }`}
+                  >
+                    Rs. {subTotal}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="font-medium text-md leading-8 text-gray-800">
+                    Shipping
+                  </p>
+                  <p
+                    className={`font-semibold text-md leading-8 text-red-800 ${
+                      productsLoading ? "skeleton-loading" : ""
+                    }`}
+                  >
+                    {shippingFees === 0 ? "FREE" : `Rs. ${shippingFees}`}
+                  </p>
+                </div>
+              </div>
+              {discountValue > 0 && (
+                <div>
+                  <div className="flex items-center justify-between">
+                    <p className="font-medium text-md leading-8 text-gray-800">
+                      Coupon Discount
+                    </p>
+                    <p className="font-semibold text-md leading-8 text-red-800">
+                      - Rs. {discountValue}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
             <div>
-              <img
-                src={product.product.primaryImgThumbnails[0].url || "/placeholder.svg"}
-                className="w-[7rem] aspect-square rounded"
-                alt={product.product.title}
+              <div className="flex items-center justify-between">
+                <p className="font-medium text-xl leading-8 text-gray-800">
+                  Total
+                </p>
+                <p
+                  className={`font-semibold text-2xl leading-8 text-red-800 ${
+                    productsLoading ? "skeleton-loading" : ""
+                  }`}
+                >
+                  Rs. {total}
+                </p>
+              </div>
+            </div>
+            <div className="py-8 w-full">
+              <PromoCodeForm
+                productTags={allProductTags}
+                discountValueReturner={getDiscountValue}
+                discountTypeReturner={setDiscountType}
+                coupon={coupon !== "none" && coupon}
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <h3>{product.product.title}</h3>
-              <h4 className="text-gray-600">
-                Rs. {product.selectedVariant.price}
-              </h4>
-              <h5 className="text-gray-400">x {product.quantity}</h5>
-            </div>
           </div>
-        ))
-      )}
-    </div>
-    <div className="py-8 flex flex-col gap-4">
-      <div>
-        <div className="flex items-center justify-between">
-          <p className="font-medium text-md leading-8 text-gray-800">
-            Sub Total
-          </p>
-          <p
-            className={`font-semibold text-md leading-8 text-red-800 ${
-              productsLoading ? "skeleton-loading" : ""
-            }`}
-          >
-            Rs. {subTotal}
-          </p>
-        </div>
-      </div>
-      <div>
-        <div className="flex items-center justify-between">
-          <p className="font-medium text-md leading-8 text-gray-800">
-            Shipping
-          </p>
-          <p
-            className={`font-semibold text-md leading-8 text-red-800 ${
-              productsLoading ? "skeleton-loading" : ""
-            }`}
-          >
-            {shippingFees === 0 ? "FREE" : `Rs. ${shippingFees}`}
-          </p>
-        </div>
-      </div>
-      {discountValue > 0 && (
-        <div>
-          <div className="flex items-center justify-between">
-            <p className="font-medium text-md leading-8 text-gray-800">
-              Coupon Discount
-            </p>
-            <p className="font-semibold text-md leading-8 text-red-800">
-              - Rs. {discountValue}
-            </p>
-          </div>
-        </div>
-      )}
-    </div>
-    <div>
-      <div className="flex items-center justify-between">
-        <p className="font-medium text-xl leading-8 text-gray-800">
-          Total
-        </p>
-        <p
-          className={`font-semibold text-2xl leading-8 text-red-800 ${
-            productsLoading ? "skeleton-loading" : ""
-          }`}
-        >
-          Rs. {total}
-        </p>
-      </div>
-    </div>
-    <div className="py-8 w-full">
-      <PromoCodeForm
-        productTags={allProductTags}
-        discountValueReturner={getDiscountValue}
-        discountTypeReturner={setDiscountType}
-        coupon={coupon !== "none" && coupon}
-      />
-    </div>
-  </div>
-
-
         </section>
       </main>
     </>

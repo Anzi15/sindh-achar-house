@@ -16,7 +16,7 @@ import { FloatingWhatsApp } from 'react-floating-whatsapp'
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const hideHeaderFooter = pathname === '/checkout' || pathname.startsWith('/admin');
-  const [headerText, setHeaderText] = useState("GM FOODS | Home made achars");
+  const [headerText, setHeaderText] = useState("Sindh Achar House | Quality Home made achars");
   const [blockMessage, setBlockMessage] = useState(null);
 
   useEffect(() => {
@@ -97,10 +97,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <title>GM FOODS | Home made achar 
+        <title>Sindh Achar House | Home made achar 
         </title>
         <link rel="icon" href="/logo.svg" sizes="any" />
-        <meta name="description" content="GM FOODS" />
+        <meta name="description" content="Sindh Achar House" />
         <noscript>
           <img
             height="1"
@@ -124,7 +124,7 @@ export default function RootLayout({ children }) {
             </>
           )}
           {children}
-          <FloatingWhatsApp phoneNumber='923053820015' accountName='GM FOODZ' statusMessage='Online' chatMessage="Asalam o alekum sir, kese hein ap?" darkMode={true} avatar="/logo.svg" />
+          <FloatingWhatsApp phoneNumber='923047210222' accountName='Sindh Achar House' statusMessage='Online' chatMessage="Asalam o alekum sir, kese hein ap?" darkMode={true} avatar="/logo.svg" />
           {!hideHeaderFooter && (
             <>
               <Footer />

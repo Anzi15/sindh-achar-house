@@ -34,6 +34,8 @@ export default async function ProductsPage({ params }) {
           className=" md:max-h-[565px] md:max-w-[445px] md:gap-8"
           parsedProductImages={JSON.stringify([
             productData?.primaryImg,
+            productData?.secondary1Img,
+            productData?.secondary2Img,
           ])}
         />
         <ProductPageUi parsedProduct={JSON.stringify(productData)} />

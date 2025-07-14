@@ -49,7 +49,7 @@ const fetchCollections = async () => {
 
 // Export sitemap configuration
 module.exports = {
-  siteUrl: 'https://alzehrabygm.store',
+  siteUrl: 'https://sindhacharhouse.com',
   generateRobotsTxt: true,
   changefreq: 'daily',
   priority: 0.7,

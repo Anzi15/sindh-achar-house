@@ -46,7 +46,7 @@ const ConfirmationEmail = (email, name) => {
         
         <p>Your order will arrive in 3-5 working days. If you have any questions or need further assistance, please do not hesitate to contact us.</p>
         <p>Thank you for shopping with us!</p>
-        <p>Best regards,<br>GM FOODZ</p>
+        <p>Best regards,<br>Sindh Achar</p>
         <div class="footer">
             <p>If you did not place this order, please contact our support team immediately.</p>
 
